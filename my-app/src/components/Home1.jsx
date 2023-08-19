@@ -8,6 +8,11 @@ const Home1 = () => {
     { src: 'path_to_your_image.jpg', alt: 'Description', text: 'Empathetic Listening, Kind Hearts' },
     { src: 'path_to_your_image.jpg', alt: 'Description', text: 'Compassionate Companions, Always Available' },
 ];
+const onButtonClick = () => {
+  console.log("The button was clicked!");
+  // You can add any other logic you want here
+};
+
   return (
     <>
     <div className="home1"> 
@@ -26,8 +31,10 @@ const Home1 = () => {
                     </tr>
                 ))}
             </tbody>
-        </table>
-        
+        </table> 
+        <button className='customButton' onClick={onButtonClick}>
+            Find a Listener
+        </button>
     </div>
     </>
   )

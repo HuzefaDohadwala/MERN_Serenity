@@ -29,6 +29,7 @@
     border-collapse: collapse;
     border: none; /* Remove table border */
     margin-left: 6%;
+    margin-top: 2.5%;
 }
 
 .custom-table td {
@@ -48,18 +49,20 @@
     height: auto;
 }
 
-.rounded-button{
-    border-color: black;
-    padding: 10px 20px;  /* Vertical and horizontal padding */
-    font-size: 16px;    /* Font size of the text */
-    background-color: #2F4858; /* Color of the button, you can change this */
-    color: #ffffff;    /* Text color */
-    border: none;      /* Removes default borders */
-    border-radius: 25px; /* Rounded corners */
-    cursor: pointer;   /* Changes the cursor to a hand on hover */
-    transition: background-color 0.3s; /* Optional: Smooth transition effect for hover */
+.customButton {
+    padding: 10px 20px;
+    margin-top: 2.5%;
+    margin-right: 74%;
+    font-size: 1.5rem;
+    background-color: #2F4858;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.rounded-button:hover {
-    background-color: #2F4858; /* Slightly darker shade for hover effect */
+.customButton:hover {
+    background-color: #3a5a78;
 }
+
