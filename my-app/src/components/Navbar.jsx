@@ -2,44 +2,66 @@ import React, { useState } from "react";
 import "./Navbar.css";
 
 const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const handleToggle = () => {
-    console.log("handleToggle called");
-    setMenuOpen(!menuOpen);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
-    <nav className={`navbar ${menuOpen ? "open" : ""}`}>
-      <div className="brand">
-        <img src="logo.png" alt="Brand Logo" />
+    <header>
+      <div className="logo">GURURAJ.</div>
+      <ul className="navigation">
+        <li>
+          <a href="#banner">HOME</a>
+        </li>
+        <li>
+          <a href="#shop">SHOP</a>
+        </li>
+        <li>
+          <a href="#about">ABOUT</a>
+        </li>
+        <li>
+          <a href="#review">REVIEWS</a>
+        </li>
+        <li>
+          <a href="#contact">CONTACT</a>
+        </li>
+      </ul>
+      <div className="hamburger" onClick={toggleMenu}>
+        <i className="fas fa-bars on" id="on"></i>
       </div>
-      <div className={`menu ${menuOpen ? "open" : ""}`}>
-        <ul>
+      <div className={`alert ${isOpen ? "open" : ""}`}>
+        <i className="fas fa-times close" onClick={toggleMenu}></i>
+        <ul className="navigation1">
           <li>
-            <a href="#">About Us</a>
+            <a href="#banner" onClick={toggleMenu}>
+              HOME
+            </a>
           </li>
           <li>
-            <a href="#">Careers</a>
+            <a href="#shop" onClick={toggleMenu}>
+              SHOP
+            </a>
           </li>
           <li>
-            <a href="#">Providers</a>
+            <a href="#about" onClick={toggleMenu}>
+              ABOUT
+            </a>
+          </li>
+          <li>
+            <a href="#review" onClick={toggleMenu}>
+              REVIEWS
+            </a>
+          </li>
+          <li>
+            <a href="#contact" onClick={toggleMenu}>
+              CONTACT
+            </a>
           </li>
         </ul>
-        <div className="buttons">
-          <button className="btn">Login</button>
-          <button className="btn">Find a Therapist</button>
-        </div>
       </div>
-      <button
-        className={`hamburger ${menuOpen ? "open" : ""}`}
-        onClick={handleToggle}
-      >
-        <span className="bar"></span>
-        <span className="bar"></span>
-        <span className="bar"></span>
-      </button>
-    </nav>
+    </header>
   );
 };
 
