@@ -12,10 +12,6 @@
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "sass": "^1.66.1",
-<<<<<<< Updated upstream
-    "scss": "^0.2.4",
-=======
->>>>>>> Stashed changes
     "web-vitals": "^2.1.4"
   },
   "scripts": {
