@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.home3 {
+  width: 100%;
+  height: 100vh;
+  background-image: url("./Home3.jpg");
+  background-repeat: no-repeat; /* Ensures the image doesn't repeat */
+  background-size: cover;
+  background-position: center;
+}
+
+.heading_home3 {
+  padding-top: 2%;
+  padding-right: 5%;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.heading_home3 h1 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #2a414f;
+}
+
+.text_home3 {
+  text-align: center;
+  color: #2a414f;
+  font-size: 0.9rem;
+  padding-right: 5%;
+  margin-top: 7px;
+}
+
+.text_home3 p {
+  margin: 0;
+  padding: 0;
+}
+
+.heading2_home3 {
+  padding-top: 10%;
+  padding-left: 22%; /* This will push the heading a little bit from the left side */
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.heading2_home3 h1 {
+  margin: 0; /* Removes default margins */
+  padding: 0; /* Removes default padding */
+  text-align: left; /* Aligns the text to the left */
+  color: #2a414f;
+}
+
+.text2_home3 {
+  text-align: left;
+  color: #2a414f;
+  font-size: 0.9rem;
+  padding-left: 22%;
+  margin-top: 7px;
+}
+
+.text2_home3 p {
+  margin: 0;
+  padding: 0;
+}
+
+.customButton {
+  padding: 10px 20px;
+  margin-top: 2.5%;
+  margin-right: 44%;
+  font-size: 1.2rem;
+  background-color: #2a414f;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.customButton:hover {
+  background-color: #556772;
+}
