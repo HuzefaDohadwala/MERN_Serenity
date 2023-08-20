@@ -12,6 +12,7 @@ function App() {
       <Home1></Home1>
       <Home2></Home2>
       <Home3></Home3>
+      <Footer></Footer>
     </div>
   );
 }
