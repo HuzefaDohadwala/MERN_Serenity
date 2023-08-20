@@ -10,22 +10,20 @@ const Navbar = () => {
 
   return (
     <header>
-      <div className="logo">GURURAJ.</div>
+      <div className="logo">Betterhelp</div>
       <ul className="navigation">
         <li>
           <a href="#banner">HOME</a>
         </li>
-        <li>
-          <a href="#shop">SHOP</a>
-        </li>
+
         <li>
           <a href="#about">ABOUT</a>
         </li>
         <li>
-          <a href="#review">REVIEWS</a>
+          <a href="#providers">PROVIDERS</a>
         </li>
         <li>
-          <a href="#contact">CONTACT</a>
+          <a href="#login">LOGIN</a>
         </li>
       </ul>
       <div className="hamburger" onClick={toggleMenu}>
@@ -39,24 +37,20 @@ const Navbar = () => {
               HOME
             </a>
           </li>
-          <li>
-            <a href="#shop" onClick={toggleMenu}>
-              SHOP
-            </a>
-          </li>
+
           <li>
             <a href="#about" onClick={toggleMenu}>
               ABOUT
             </a>
           </li>
           <li>
-            <a href="#review" onClick={toggleMenu}>
-              REVIEWS
+            <a href="#providers" onClick={toggleMenu}>
+              PROVIDERS
             </a>
           </li>
           <li>
-            <a href="#contact" onClick={toggleMenu}>
-              CONTACT
+            <a href="#login" onClick={toggleMenu}>
+              LOGIN
             </a>
           </li>
         </ul>
