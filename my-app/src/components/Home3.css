@@ -14,8 +14,7 @@
 }
 
 .heading_home3 {
-  padding-top: 2%;
-  padding-right: 5%;
+  padding-top: 6%;
   font-size: 2rem;
   font-weight: 500;
 }
@@ -27,21 +26,8 @@
   color: #2a414f;
 }
 
-.text_home3 {
-  text-align: center;
-  color: #2a414f;
-  font-size: 0.9rem;
-  padding-right: 5%;
-  margin-top: 7px;
-}
-
-.text_home3 p {
-  margin: 0;
-  padding: 0;
-}
-
 .heading2_home3 {
-  padding-top: 10%;
+  padding-top: 8%;
   padding-left: 22%; /* This will push the heading a little bit from the left side */
   font-size: 2rem;
   font-weight: 500;
