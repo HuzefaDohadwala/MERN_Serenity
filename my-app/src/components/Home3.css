@@ -67,7 +67,7 @@
   padding: 0;
 }
 
-.customButton {
+.customButton3 {
   padding: 10px 20px;
   margin-top: 2.5%;
   margin-right: 44%;
@@ -80,6 +80,6 @@
   transition: background-color 0.3s;
 }
 
-.customButton:hover {
+.customButton3:hover {
   background-color: #556772;
 }

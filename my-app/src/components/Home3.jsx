@@ -23,7 +23,7 @@ const Home3 = () => {
           <p>person or virtually, whichever works</p>
           <p>best for you.</p>
         </div>
-        <button className="customButton">Find a Therapist</button>
+        <button className="customButton3">Find a Therapist</button>
       </div>
     </>
   );
