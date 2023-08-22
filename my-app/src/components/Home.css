@@ -1,0 +1,34 @@
+
+  .scroll-container_5,
+  .scroll-area_5 {
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .scroll-container_5 {
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    
+  }
+  .scroll-container_5::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-area_5 {
+    
+    scroll-snap-align: start;
+  }
+  
+  .scroll-container_5,
+  .scroll-area_5 {
+    margin: 0 auto;
+  }
+  
+  .scroll-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  
+  
