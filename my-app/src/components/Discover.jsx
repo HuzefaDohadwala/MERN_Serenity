@@ -8,8 +8,8 @@ const Discover = () => {
   return (
     <>
       <Navbar></Navbar>
-      <Disc1></Disc1>
-      <Disc2></Disc2>
+      <Disc1/>
+      <Disc2/>
     </>
   );
 };
