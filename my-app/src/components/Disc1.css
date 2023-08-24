@@ -15,9 +15,8 @@
 
 .disc1_semic1{
     position: absolute;
-    top: 0%; 
-    right: 0%;
-    left: 70%;
+    top: 0; 
+    right: 0;
     height: 35rem;
     width: 35rem;
     border-radius: 0 100% 100% 0; /* Modified this line */
