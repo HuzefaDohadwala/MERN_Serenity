@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.disc1{
+    background-color: #ffedc8;
+    height: 100vh;
+    width: 100%;
+    position: relative; 
+    margin: 0;
+    padding: 0;
+}
+
+.disc1_semic1{
+    position: absolute;
+    top: 0%; 
+    right: 0%;
+    left: 70%;
+    height: 35rem;
+    width: 35rem;
+    border-radius: 0 100% 100% 0; /* Modified this line */
+    transform: rotate(90deg);
+    background-color: #fdf0d6;
+}
+
+.heading_disc1{
+    padding-top: 8%;  /* This will push the heading down from the top */
+    font-size: 3.2rem;
+    font-weight: 500;
+    text-align: left;
+    margin-left: 7%;
+}
+
+.heading_disc1 h1{
+    padding: 0;
+    margin: 0;
+}
+
+.subheading_disc1{
+    margin-top: 3%;
+    font-weight: 5000;
+    font-size: 1.85rem;
+    text-align: left;
+    margin-left: 7%;
+
+}

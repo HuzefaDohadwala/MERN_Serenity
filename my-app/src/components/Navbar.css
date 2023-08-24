@@ -10,7 +10,7 @@
 }
 
 body {
-    background: #fff;
+    background: white;
 }
 
 header {
@@ -28,7 +28,7 @@ header {
 }
 
 header .logo {
-    color: #fff;
+    color: #99A7AF;
     font-weight: bold;
     font-size: 2.5em;
     text-decoration: none;
@@ -44,11 +44,11 @@ header ul {
 
 header .navigation li a {
     text-decoration: none;
-    color: #fff;
+    color:#99A7AF;
 }
 
 header .navigation li a:hover {
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #99A7AF;
 }
 
 header .hamburger {
@@ -57,7 +57,7 @@ header .hamburger {
 }
 
 header .hamburger i {
-    color: #fff;
+    color: #99A7AF;
 }
 
 .alert {
@@ -65,7 +65,7 @@ header .hamburger i {
     top: 5%;
     right: 2%;
     /* background: #111; */
-    color: #fff;
+    color: #99A7AF;
     font-weight: 800;
     /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); */
     padding: 20px;
@@ -85,7 +85,7 @@ header .hamburger i {
 
 .alert .navigation1 li a {
     text-decoration: none;
-    color: #fff;
+    color: #99A7AF;
 }
 
 .alert .navigation1 i {
@@ -93,7 +93,7 @@ header .hamburger i {
     justify-content: flex-end;
     font-size: 30px;
     cursor: pointer;
-    color: #fff;
+    color: #99A7AF;
 }
 
 @media(max-width:991px) {
