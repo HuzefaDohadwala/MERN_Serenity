@@ -1,6 +1,6 @@
 
 .parent-wrapper {
-    background-image: url('Group\ 3.png');
+    background-image: url('Group\ 3-img.png');
     background-size: cover;  /* Ensure the image covers the entire parent-wrapper */
     background-repeat: no-repeat;
     background-position: center center;
@@ -12,7 +12,7 @@
 }
 
 .footer-wrapper {
-    background-color: #031F36;
+    /* background-color: #031F36; */
     padding: 20px 0;
     color: #ecf0f1;
     display: grid;
