@@ -1,0 +1,52 @@
+.disc2{
+    margin: 0;
+    padding: 0;
+    background-color: #f5f8ee;
+    height: 150vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.disc2_semic11{
+    width: 700px; /* Double the width of the container */
+    height: 700px; /* Double the height of the container */
+    border-radius: 50%; /* Half the width/height of the container */
+    position: absolute;
+    top:0;
+    left: 0;
+    margin-top: 5%;
+    margin-left: -30%;
+    transform: rotate(90deg);
+    border-width: 3px;
+    border-color: #025b4b;
+}
+
+.disc2_semic12{
+    width: 620px; /* Double the width of the container */
+    height: 600px; /* Double the height of the container */
+    border-radius: 50%; /* Half the width/height of the container */
+    position: absolute;
+    top:0;
+    left: 0;
+    margin-top: 6%;
+    margin-left: -30%;
+    transform: rotate(90deg);
+    border-width: 3px;
+    border-color: #025b4b;
+}
+
+.test1{
+    text-align: left;
+    margin-left: 48%;
+    margin-top: 8%;
+    margin-right: 4%;
+}
+
+.test_words{
+    font-weight: bold;
+}
+
+.test_name{
+    font-size: 1.1rem;
+}
