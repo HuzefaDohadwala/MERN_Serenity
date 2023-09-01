@@ -109,4 +109,5 @@
     margin: 0; /* Make sure no margin is pushing it away from the edge */
     border-radius: 50% 0 0 50% ;
     object-fit: cover;
+    z-index: 5;
 }
