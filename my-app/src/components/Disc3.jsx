@@ -33,56 +33,56 @@ const Disc3 = () => {
       <div className="accordion">
         <div className="accordion-item">
           <button id="accordion-button-1" aria-expanded="false">
-            <span className="accordion-title">Why is the moon sometimes out during the day?</span>
+            <span className="accordion-title">What is better help ?</span>
             <span className="icon" aria-hidden="true"></span>
           </button>
           <div className="accordion-content">
             <p classNameName="accordion-para">
-                hello
+            It is an online web based mental health app to provide its members a judgement free and affordable mental health care service
             </p>
           </div>
         </div>
         <div className="accordion-item">
           <button id="accordion-button-2" aria-expanded="false">
-            <span className="accordion-title">Why is the sky blue?</span>
+            <span className="accordion-title">Who are the listeners ?</span>
             <span className="icon" aria-hidden="true"></span>
           </button>
           <div className="accordion-content">
             <p classNameName="accordion-para">
-                    hello
+            The listeners are working psychologist and students who are trained extensively through a program to provide our members the best possible help they need.
             </p>
           </div>
         </div>
         <div className="accordion-item">
           <button id="accordion-button-3" aria-expanded="false">
-            <span className="accordion-title">Will we ever discover aliens?</span>
+            <span className="accordion-title">Is it safe and secure ?</span>
             <span className="icon" aria-hidden="true"></span>
           </button>
           <div className="accordion-content">
             <p classNameName="accordion-para">
-                hello
+            Better help promotes anonymity to ensure neither the identity of the member or listener is revealed.
             </p>
           </div>
         </div>
         <div className="accordion-item">
           <button id="accordion-button-4" aria-expanded="false">
-            <span className="accordion-title">How much does the Earth weigh?</span>
+            <span className="accordion-title">How much does it cost ?</span>
             <span className="icon" aria-hidden="true"></span>
           </button>
           <div className="accordion-content">
             <p classNameName="accordion-para">
-                hello
+            Members who seek out therapy get the first session free and the later sessions are charged based on the therapist and session duration. Rest all services are free of cost.
             </p>
           </div>
         </div>
         <div className="accordion-item">
           <button id="accordion-button-5" aria-expanded="false">
-            <span className="accordion-title">How do airplanes stay up?</span>
+            <span className="accordion-title">What if I don't need therapy?</span>
             <span className="icon" aria-hidden="true"></span>
           </button>
           <div className="accordion-content">
             <p classNameName="accordion-para">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro ex nisi, explicabo hic soluta non sit recusandae sequi at eos ab quas, quae, illum laudantium aliquid optio! Rerum, dignissimos saepe.
+            Not all members require a therapist at all times, better help promotes a safe and free space where members can contact listeners and help them better understand their situation.
             </p>
           </div>
         </div>
