@@ -8,7 +8,6 @@
 .home3 {
   width: 100%;
   height: 100vh;
-  background-image: url("./Home3.jpg");
   background-repeat: no-repeat; /* Ensures the image doesn't repeat */
   background-size: cover;
   background-position: center;

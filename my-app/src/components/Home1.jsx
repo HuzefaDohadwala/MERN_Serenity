@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home1.css";
+import home1_image from './home1_image.jpg';
 
 const Home1 = () => {
   const rows = [
@@ -36,6 +37,9 @@ const Home1 = () => {
           <h1>Embrace empathy,</h1>
           <h1>Find your listener</h1>
         </div>
+        <div className="home1_semic11"></div>
+       <div className="home1_semic12"></div>
+       <img src={home1_image} alt="logo" className="home1_image" />
         <table className="custom-table">
           <tbody>
             {rows.map((row, index) => (
