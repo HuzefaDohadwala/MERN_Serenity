@@ -5,7 +5,7 @@
 }
 
 .disc1 {
-  background-color: #ffedc8;
+  background-color: #E6E6FA;
   height: 100vh;
   width: 100%;
   position: relative;
@@ -13,6 +13,7 @@
   padding: 0;
   display: grid;
   grid-template-columns: 53% 43%;
+  overflow: hidden;
 }
 
 .disc1-image-bg {
@@ -36,16 +37,6 @@
   height: 16rem;
 }
 
-.disc1_semic1 {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 35rem;
-  width: 35rem;
-  border-radius: 0 100% 100% 0; /* Modified this line */
-  transform: rotate(90deg);
-  background-color: #fdf0d6;
-}
 
 .heading_disc1 {
   padding-top: 8%; /* This will push the heading down from the top */
@@ -67,4 +58,15 @@
   font-size: 1.85rem;
   text-align: left;
   margin-left: 7%;
+}
+
+.disc_image{
+  height: 410px;
+  width: 410px;
+  margin-left: 120%;
+  margin-top: -52%;
+  position: relative;
+  z-index: 1;
+  border-radius: 50%;
+  object-fit: cover;
 }

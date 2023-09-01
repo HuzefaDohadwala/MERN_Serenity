@@ -14,11 +14,11 @@
   margin: 0 auto;
   padding: 4rem;
   justify-content: center;
-  background-color: #ffedc8;
+  background-color: #E6E6FA;
 }
 
 .accordion .accordion-item {
-  border-bottom: 1px solid #025b4b;
+  border-bottom: 1px solid #7E506C;
 }
 
 .accordion button {
@@ -27,7 +27,7 @@
   text-align: left;
   width: 100%;
   padding: 1em 0;
-  color: #025b4b;
+  color: black;
   font-size: 1.15rem;
   font-weight: 400;
   border: none;
@@ -38,14 +38,14 @@
 .accordion button:hover,
 .accordion button:focus {
   cursor: pointer;
-  color: #3CC175;
+  color: #58384c;
 }
 
 .accordion button:hover::after,
 .accordion button:focus::after {
   cursor: pointer;
-  color: #3CC175;
-  border: 1px solid #3CC175;
+  color: #58384c;
+  border: 1px solid #58384c;
 }
 
 .accordion button .accordion-title {
@@ -85,7 +85,7 @@
 }
 
 .accordion button[aria-expanded='true'] {
-  color: #3CC175;
+  color: #58384c;
 }
 .accordion button[aria-expanded='true'] .icon::after {
   width: 0;
@@ -114,7 +114,7 @@
     margin-top: 3%;
     font-weight: 300;
     font-size: 2.3rem;
-    color: #025b4b;
+    color: black;
 
 }
 
