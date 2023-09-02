@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.About2_container {
+  background-color: #e6e6fa;
+  height: 200vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
