@@ -33,7 +33,7 @@ const Home3 = () => {
           </div>
           <div className="rightFlex_home3 flex justify-center">
             <div className="img-container relative">
-              <img src={Mpr3} className="rounded-2xl" alt="Home 3 Image" />
+              <img src={Mpr3} className="rounded-2xl" alt="Home-3-Image" />
               <div className="shadow absolute"></div>
             </div>
           </div>

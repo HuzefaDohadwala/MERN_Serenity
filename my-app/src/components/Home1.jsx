@@ -1,27 +1,31 @@
 import React from "react";
 import "./Home1.css";
-import home1_image from './home1_image.jpg';
+import home1_image from "./home1_image.jpg";
+import helping from "./helping.png";
+import empathy from "./empathy.png";
+import padlock from "./padlock.png";
+import clock from "./clock.png";
 
 const Home1 = () => {
   const rows = [
     {
-      src: "path_to_your_image.jpg",
-      alt: "Description",
+      src: helping, // Updated the src field
+      alt: "Helping",
       text: "Instant Connection, Genuine Support",
     },
     {
-      src: "path_to_your_image.jpg",
-      alt: "Description",
+      src: empathy, // Updated the src field
+      alt: "Empathy",
       text: "Empathetic Listening, Kind Hearts",
     },
     {
-      src: "path_to_your_image.jpg",
-      alt: "Description",
-      text: "Empathetic Listening, Kind Hearts",
+      src: padlock, // Updated the src field
+      alt: "Secure",
+      text: "Your Privacy is Our Priority",
     },
     {
-      src: "path_to_your_image.jpg",
-      alt: "Description",
+      src: clock, // Updated the src field
+      alt: "Time",
       text: "Compassionate Companions, Always Available",
     },
   ];
@@ -38,12 +42,12 @@ const Home1 = () => {
           <h1>Find your listener</h1>
         </div>
         <div className="home1_semic11"></div>
-       <div className="home1_semic12"></div>
-       <img src={home1_image} alt="logo" className="home1_image" />
+        <div className="home1_semic12"></div>
+        <img src={home1_image} alt="logo" className="home1_image" />
         <table className="custom-table">
           <tbody>
             {rows.map((row, index) => (
-              <tr key={index}>
+              <tr className="tableRow_home1" key={index}>
                 <td className="image-cell">
                   <img src={row.src} alt={row.alt} className="table-image" />
                 </td>
