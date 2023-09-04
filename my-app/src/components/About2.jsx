@@ -1,6 +1,8 @@
 import React from "react";
 import "./About2.css";
 import About2Img from "./About2Img.jpg";
+import mission from "./mission.png";
+import opportunity from "./opportunity.png";
 
 const About2 = () => {
   return (
@@ -12,10 +14,20 @@ const About2 = () => {
       </div>
       <div className="about2_bottom">
         <div className="about2_opportunity">
-          <h1>The Opportunity</h1>
+          <div className="icon_cell">
+            <img
+              src={opportunity}
+              alt="logo"
+              className="about2_icon about2_oppIcon"
+            />
+          </div>
+          <h1 className="about2_bottomTitle">The Opportunity</h1>
         </div>
         <div className="about2_mission">
-          <h1>The Mission</h1>
+          <div className="icon_cell">
+            <img src={mission} alt="logo" className="about2_icon" />
+          </div>
+          <h1 className="about2_bottomTitle">The Mission</h1>
         </div>
       </div>
     </div>

@@ -25,5 +25,33 @@
 }
 
 .about2_bottom {
-  margin-top: 10%;
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.icon_cell {
+  background-color: #a48aa8; /* Circular background color */
+  border-radius: 50%; /* Makes it circular */
+  padding: 20px; /* Padding around the image */
+  width: 100px; /* Fixed width */
+  height: 100px; /* Fixed height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about2_icon {
+  width: 50px; /* Set the width you desire */
+  height: 50px; /* Set the height you desire */
+}
+
+.about2_oppIcon {
+  margin-left: 20%;
+}
+
+.about2_bottomTitle {
+  font-size: 1em;
+  text-align: center;
+  margin-top: 10px;
 }
