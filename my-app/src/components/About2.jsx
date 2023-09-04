@@ -22,12 +22,20 @@ const About2 = () => {
             />
           </div>
           <h1 className="about2_bottomTitle">The Opportunity</h1>
+          <p>A platform that makes personalized</p>
+          <p>therapy accessible for all, allowing therapists</p>
+          <p>to serve their communities effectively,</p>
+          <p>not just those who can afford it.</p>
         </div>
         <div className="about2_mission">
           <div className="icon_cell">
             <img src={mission} alt="logo" className="about2_icon" />
           </div>
           <h1 className="about2_bottomTitle">The Mission</h1>
+          <p>Committed to increasing access to</p>
+          <p>therapy by serving as a bridge between</p>
+          <p>professional therapists and those in</p>
+          <p>need of mental health support.</p>
         </div>
       </div>
     </div>
