@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home3.css";
-import Mpr3 from "../components/Mpr3.jpg";
+import Mpr3 from "./Mpr3.jpg";
 
 const Home3 = () => {
   return (

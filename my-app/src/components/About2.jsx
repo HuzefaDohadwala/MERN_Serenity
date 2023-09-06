@@ -7,6 +7,8 @@ import opportunity from "./opportunity.png";
 const About2 = () => {
   return (
     <div className="About2_container">
+      <div className="circle_adi circle1_adi"></div>
+      <div className="circle_adi circle2_adi"></div>
       <div className="about2_contImg">
         <div className="about2Img_container">
           <img src={About2Img} alt="logo" className="rounded-2xl about2_img" />

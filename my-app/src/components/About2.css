@@ -31,27 +31,28 @@
 }
 
 .icon_cell {
+  position: relative;
   background-color: #a48aa8; /* Circular background color */
   border-radius: 50%; /* Makes it circular */
   padding: 20px; /* Padding around the image */
   width: 100px; /* Fixed width */
   height: 100px; /* Fixed height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  left: 35%;
 }
 
 .about2_icon {
+  position: absolute; /* Set to absolute */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%);
   width: 50px; /* Set the width you desire */
   height: 50px; /* Set the height you desire */
-}
-
-.about2_oppIcon {
-  margin-left: 20%;
+  margin: 0 auto; /* Center the image horizontally */
 }
 
 .about2_bottomTitle {
-  font-size: 1em;
+  font-size: 1.5em;
+  color: #7e506c;
   text-align: center;
   margin-top: 10px;
 }
