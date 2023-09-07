@@ -5,44 +5,48 @@
     text-decoration: none;
 }
 
-.heading-second{
+.heading-second-home2{
     width: 580px;
 }
 
-.left-container {
+.left-container-home2 {
     position: relative;
   }
   
-  .img-container {
+  .img-container-home2 {
     position: relative;
     z-index: 2;
   }
   
-  .img-container img {
-    width: 100%;
-    height: auto;
+  .img-container-home2 img {
+    /* width: 100%; */
+    /* height: auto; */
+    position: relative;
+    z-index: 2;
+    height: 80%;
     border-radius: 1rem; /* adjust as needed */
   }
   
-  .shadow {
+  .shadow-home2 {
     position: absolute;
-    top: 10px;
-    left: -10px;
+    top: 12px;
+    left: -12px;
+    
+    bottom: 0;
     z-index: -1;
-    width: 200px;
-    height: 330px;
     background-color: #B8A8C4; /* Shadow color and opacity */
     border-radius: 1rem; /* Same as image border-radius */
-    object-fit: cover;
-  }
+    object-fit: cover;    
+}
 
-  .circle {
+
+  .circle-home2 {
     position: absolute;
     background-color: #b8a8c4;
     border-radius: 50%;
   }
 
-  .circle1{
+  .circle1-home2{
     width: 500px;
     height: 500px;
     top: 53%;
@@ -50,14 +54,14 @@
    
   } 
 
-  .circle2{
+  .circle2-home2{
     width: 300px;
     height: 300px;
     top: -4%;
     right: 86%;
   }
 
-  .circle3{
+  .circle3-home2{
     width: 80px;
     height: 80px;
     top: 13%;
@@ -65,7 +69,7 @@
     
   }
   
-  .second-main{
+  .second-main-home2{
     overflow: hidden;
   }
   
