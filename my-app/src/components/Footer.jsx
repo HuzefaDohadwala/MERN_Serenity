@@ -22,32 +22,32 @@ const Footer = () => {
   ];
 
   return (
-
     <div className="parent-wrapper">
-    <div className="footer-wrapper">
-      {/* 1st column with Logo */}
-      <div className="logo-wrapper">
-        <h1>Betterhelp</h1>
+      <div className="footer_emptySpace"></div>
+      <div className="footer-wrapper">
+        {/* 1st column with Logo */}
+        <div className="logo-wrapper">
+          <h1>Betterhelp</h1>
+        </div>
+
+        {/* 2nd column with titles */}
+        <ul className="title-list">
+          {columnTitles.map((title, index) => (
+            <li key={index} className="title-item">
+              {title}
+            </li>
+          ))}
+        </ul>
+
+        {/* 3rd column with titles */}
+        <ul className="title-list">
+          {columnTitles2.map((title, index) => (
+            <li key={index} className="title-item">
+              {title}
+            </li>
+          ))}
+        </ul>
       </div>
-
-      {/* 2nd column with titles */}
-      <ul className="title-list">
-        {columnTitles.map((title, index) => (
-          <li key={index} className="title-item">
-            {title}
-          </li>
-        ))}
-      </ul>
-
-      {/* 3rd column with titles */}
-      <ul className="title-list">
-        {columnTitles2.map((title, index) => (
-          <li key={index} className="title-item">
-            {title}
-          </li>
-        ))}
-      </ul>
-    </div>
     </div>
   );
 };
