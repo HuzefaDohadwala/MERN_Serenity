@@ -64,7 +64,8 @@ const About3 = () => {
           <h1 className="about3_subtitle">Experience</h1>
           <p>Psychology students can avail a</p>
           <p>valuable experience by interacting with</p>
-          <p>the members and showcase their listening skills.</p>
+          <p>the members and showcase</p>
+          <p> their listening skills.</p>
         </div>
         <div className="about3_premium">
           <div className="about3_iconCell">
