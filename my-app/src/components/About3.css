@@ -26,9 +26,11 @@
 .about3_top,
 .about3_bottom {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  grid-template-columns: repeat(3, 0.5fr); /* 3 equal columns */
   justify-items: center; /* Center content in each grid cell */
-  width: 100%;
+  width: 90%;
+  margin-left: 5%;
+  gap: 10%;
 }
 
 .about3_iconCell {
@@ -49,6 +51,7 @@
 .about3_subtitle {
   font-size: 1.5em;
   margin-bottom: 10px;
+  color: #7e506c;
   text-align: left;
 }
 

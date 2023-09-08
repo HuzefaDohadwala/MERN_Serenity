@@ -21,9 +21,10 @@ const About3 = () => {
             />
           </div>
           <h1 className="about3_subtitle">Telehealth</h1>
-          <p>Choose between in-person or </p>
-          <p>virtual appointments with the therapist;</p>
-          <p>our platform supports both!</p>
+          <p>
+            Choose between in-person or virtual appointments with the therapist;
+            our platform supports both!
+          </p>
         </div>
         <div className="about3_peerCommunity">
           <div className="about3_iconCell">
@@ -34,9 +35,10 @@ const About3 = () => {
             />
           </div>
           <h1 className="about3_subtitle">Peer Community</h1>
-          <p>Gain access to a community of members</p>
-          <p>to share support, advice during</p>
-          <p>your private practice journey!</p>
+          <p>
+            Gain access to a community of members to share support, advice
+            during your private practice journey!
+          </p>
         </div>
         <div className="about3_annonymousChats">
           <div className="about3_iconCell">
@@ -47,9 +49,10 @@ const About3 = () => {
             />
           </div>
           <h1 className="about3_subtitle">Anonymous Chats</h1>
-          <p>User profiles of both members</p>
-          <p>and listeners have the option</p>
-          <p>to chat anonymously on the platform.</p>
+          <p>
+            User profiles of both members and listeners have the option to chat
+            anonymously on the platform.
+          </p>
         </div>
       </div>
       <div className="about3_bottom">
@@ -62,10 +65,10 @@ const About3 = () => {
             />
           </div>
           <h1 className="about3_subtitle">Experience</h1>
-          <p>Psychology students can avail a</p>
-          <p>valuable experience by interacting with</p>
-          <p>the members and showcase</p>
-          <p> their listening skills.</p>
+          <p>
+            Psychology students can avail a valuable experience by interacting
+            with the members and showcase their listening skills.
+          </p>
         </div>
         <div className="about3_premium">
           <div className="about3_iconCell">
@@ -76,9 +79,10 @@ const About3 = () => {
             />
           </div>
           <h1 className="about3_subtitle">Premium</h1>
-          <p>Have an access to advanced features</p>
-          <p>like direct chats with therapists after</p>
-          <p>getting a subscription on the platform.</p>
+          <p>
+            Have an access to advanced features like direct chats with
+            therapists after getting a subscription on the platform.
+          </p>
         </div>
         <div className="about3_marketing">
           <div className="about3_iconCell">
@@ -89,9 +93,10 @@ const About3 = () => {
             />
           </div>
           <h1 className="about3_subtitle">Marketing</h1>
-          <p>For therapists, get your private practice </p>
-          <p>out in front of thousands of potential new </p>
-          <p>clients by joining the therapist directory.</p>
+          <p>
+            For therapists, get your private practice out in front of thousands
+            of potential new clients by joining the therapist directory.
+          </p>
         </div>
       </div>
     </div>
