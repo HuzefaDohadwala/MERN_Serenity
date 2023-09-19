@@ -1,0 +1,83 @@
+.ml3_container {
+  background-color: #e6e6fa;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.ml3_left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* This will keep all items to the left */
+  justify-content: center;
+  margin-left: 10%;
+}
+
+.ml3_right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* This will keep all items to the left */
+  justify-content: center;
+}
+
+.ml3_title h1,
+.ml3_text p,
+.mem3_btn button {
+  text-align: left; /* This will ensure text inside these elements is also aligned left */
+  margin-left: 0; /* Making sure there's no extra left margin */
+}
+
+/* Optional styling for the button to ensure it's not stretching full width */
+.mem3_btn button {
+  align-self: flex-start; /* This will ensure the button doesn't stretch full width */
+}
+
+.ml3_title {
+  color: #7e506c;
+  font-size: 3em;
+}
+
+.ml3_text {
+  color: black;
+  font-size: 1.2em;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  width: 70%;
+}
+
+.mem3_btn {
+  width: fit-content;
+  padding: 10px 20px;
+  border-radius: 30px;
+  background-color: #7e506c;
+  color: #e6e6fa;
+}
+
+.ml3_image {
+  position: relative;
+  width: 250px; /* Set the width you desire */
+  height: auto; /* Maintain aspect ratio */
+  right: 60%;
+}
+
+.ml3_image img {
+  width: 100%; /* Make sure the image takes up all the container space */
+  height: auto; /* Maintain aspect ratio */
+  z-index: 2;
+  position: relative;
+  border-radius: 1rem; /* For rounded corners */
+}
+
+.shadow1 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+}

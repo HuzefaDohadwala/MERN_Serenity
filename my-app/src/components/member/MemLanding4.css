@@ -1,0 +1,34 @@
+.ml4_container {
+  background-color: #e6e6fa;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.ml4_image {
+  position: relative;
+  width: 250px; /* Set the width you desire */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.ml4_image img {
+  width: 100%; /* Make sure the image takes up all the container space */
+  height: auto; /* Maintain aspect ratio */
+  z-index: 2;
+  position: relative;
+  border-radius: 1rem; /* For rounded corners */
+}
+
+.shadow {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+}

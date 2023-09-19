@@ -16,7 +16,7 @@
 
 .about1-title {
   position: absolute;
-  bottom: 18%; /* Adjust this value to place the title where you want it vertically */
+  bottom: 17%; /* Adjust this value to place the title where you want it vertically */
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 1;
@@ -26,7 +26,7 @@
 
 .about1_text {
   position: absolute;
-  bottom: 8%; /* Adjust this value to place the title where you want it vertically */
+  bottom: 5%; /* Adjust this value to place the title where you want it vertically */
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 1;
