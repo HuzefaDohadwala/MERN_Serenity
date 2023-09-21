@@ -5,9 +5,9 @@ import img_mem3 from "./img_mem3.jpg";
 const MemLanding3 = () => {
   return (
     <div className="ml3_container">
-      <div className="circle_adi circle3_adi"></div>
-      <div className="circle_adi circle1_adi"></div>
-      <div className="circle_adi circle2_adi"></div>
+      <div className="circle-home2 circle1-home2"></div>
+      <div className="circle-home2 circle2-home2"></div>
+      <div className="circle-home2 circle3-home2"></div>
       <div className="ml3_left">
         <div className="ml3_title">
           <h1>See Explore</h1>

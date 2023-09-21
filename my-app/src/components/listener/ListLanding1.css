@@ -1,0 +1,39 @@
+.ll1_container {
+  background-image: url(https://images.pexels.com/photos/5505745/pexels-photo-5505745.jpeg?auto=compress&cs=tinysrgb&w=1600);
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.ll1_title {
+  margin-top: 14%;
+  color: #7e506c;
+  font-size: 3em;
+  z-index: -1;
+}
+
+.ll1_text {
+  margin-top: 5%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 1;
+  color: black;
+  font-size: 1.5em;
+}
+
+.list1Btn_area {
+  display: flex;
+  justify-content: center;
+  gap: 20%;
+  margin-top: 15%;
+  font-size: 1.25em;
+}
+
+.list1_btn {
+  padding: 10px 20px;
+  border-radius: 30px;
+  background-color: #e6e6fa;
+  color: #7e506c;
+}

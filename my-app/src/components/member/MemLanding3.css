@@ -60,7 +60,7 @@
   position: relative;
   width: 250px; /* Set the width you desire */
   height: auto; /* Maintain aspect ratio */
-  right: 60%;
+  right: 90%;
 }
 
 .ml3_image img {

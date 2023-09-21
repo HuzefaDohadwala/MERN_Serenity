@@ -13,6 +13,7 @@ const NavMem = () => {
       <div className="logo">Betterhelp</div>
       <ul className="navigation">
         <li>Go Pro</li>
+        <li>My Profile</li>
       </ul>
 
       <div className="hamburger" onClick={toggleMenu}>
@@ -22,6 +23,7 @@ const NavMem = () => {
         <i className="fas fa-times close" onClick={toggleMenu}></i>
         <ul className="navigation1">
           <li>Go Pro</li>
+          <li>My Profile</li>
         </ul>
       </div>
     </header>

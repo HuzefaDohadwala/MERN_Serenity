@@ -1,0 +1,56 @@
+header {
+  position: fixed; /* This makes the navbar fixed/sticky at the top */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 20px 60px;
+  background: transparent; /* This makes the navbar transparent */
+  /* Made the border semi-transparent */
+}
+
+header .logo {
+  color: #7e506c;
+  font-weight: bold;
+  font-size: 2.5em;
+  text-decoration: none;
+}
+
+header ul {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 60px;
+  list-style: none;
+}
+
+header .navigation li a {
+  text-decoration: none;
+  color: #7e506c;
+}
+
+header .navigation li a:hover {
+  border-bottom: 1px solid #7e506c;
+}
+
+header .hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+header .hamburger i {
+  color: #7e506c;
+}
+
+@media (max-width: 991px) {
+  header .navigation {
+    display: none;
+  }
+
+  header .hamburger {
+    display: block;
+  }
+}
