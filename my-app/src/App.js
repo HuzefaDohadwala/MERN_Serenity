@@ -7,6 +7,9 @@ import Discover from "./components/Discover";
 import Login from "./components/Login";
 import MemLanding from "./components/member/MemLanding";
 import ListLanding from "./components/listener/ListLanding";
+// import MemLanding from "./components/member/MemLanding";
+import SignUp from "./components/SignUp";
+import Welcome from './components/member/Welcome';
 
 function App() {
   return (
@@ -18,6 +21,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/member/landing" element={<MemLanding />} />
         <Route path="/listener/landing" element={<ListLanding />} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/signup" element={<SignUp/>} />
+        {/* <Route path="/member/landing" element={<MemLanding />} /> */}
+        <Route path="/user" element={<Welcome/> }/>
       </Routes>
     </div>
   );
