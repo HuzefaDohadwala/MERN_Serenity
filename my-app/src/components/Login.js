@@ -1,5 +1,12 @@
-import { Box, Button, TextField, Typography, CircularProgress } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 import axios from "axios";
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,11 +16,9 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  // Modify this line to add user data to the state
-  const [userData, setUserData] = useState(null);
+  // error state
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setInputs((prev) => ({
@@ -22,35 +27,16 @@ const Login = () => {
     }));
   };
 
-  const sendRequest = async () => {
-    console.log("Send Request function executed!");
-    setLoading(true);
-    setError(null);
-
-    try {
-      const res = await axios.post("http://localhost:5000/login", {
-        email: inputs.email,
-        password: inputs.password,
-      });
-      const data = res.data;
-
-      // Display a success message and redirect with state
-      setTimeout(() => {
-        console.log("Passing User data as state!");
-        history("/user", { state: { user: data } }); // Use 'state' property to pass user data
-      }, 1000); // Redirect after 1 second
-    } catch (error) {
-      // Handle errors and display error message
-      setError("Invalid email or password");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSubmit = (e) => {
-    console.log("Handle Submit executed!!");
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    sendRequest();
+    try {
+      const res = await axios.post("http://localhost:5000/login", inputs);
+      console.log(res);
+      history("/member/landing");
+    } catch (err) {
+      console.log(err);
+      setError(err.response.data.msg);
+    }
   };
 
   return (
@@ -87,8 +73,8 @@ const Login = () => {
             margin="normal"
             required
           />
-          <Button variant="contained" type="submit" disabled={loading}>
-            {loading ? <CircularProgress size={24} /> : "Login"}
+          <Button variant="contained" type="submit">
+            "Login"
           </Button>
           {error && <Typography color="error">{error}</Typography>}
         </Box>

@@ -9,6 +9,7 @@ app.use(cors({credentials:true, origin:"http://localhost:3000"}));
 app.use(cookieParser());
 app.use(express.json());
 app.use('/',router);
+app.use('/listener',require('./routes/listener-routes'));
 
 mongoose.connect("mongodb+srv://ahkj:Y9Qj01QHl753QEPk@miniproject.kktnwsl.mongodb.net/BetterHelp?retryWrites=true&w=majority").then(()=>{
     app.listen(5000);

@@ -2,8 +2,11 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+ 
+
 const Signup = () => {
-  const history = useNavigate();
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
@@ -15,22 +18,20 @@ const Signup = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  const sendRequest = async () => {
-    const res = await axios
-      .post("http://localhost:5000/signup", {
-        username: inputs.username,
-        email: inputs.email,
-        password: inputs.password,
-      })
-      .catch((err) => console.log(err));
-    const data = await res.data;
-    return data;
-  };
-  const handleSubmit = (e) => {
+
+  // post details on /signup route
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // send http request
-    sendRequest().then(() => history("/login"));
+    try {
+      const res = await axios.post("http://localhost:5000/signup", inputs);
+      console.log(res);
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+      setError(err.response.data.message); // set error message from server response
+    }
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -44,7 +45,6 @@ const Signup = () => {
           alignItems="center"
         >
           <Typography variant="h2">Signup</Typography>
-    
           <TextField
             name="username"
             onChange={handleChange}
@@ -74,6 +74,7 @@ const Signup = () => {
           <Button variant="contained" type="submit">
             Signup
           </Button>
+          {error && <Typography color="error">{error}</Typography>}
         </Box>
       </form>
     </div>
