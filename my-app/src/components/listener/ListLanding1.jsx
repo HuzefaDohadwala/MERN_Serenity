@@ -1,6 +1,7 @@
 import React from "react";
 import "./ListLanding1.css";
 
+
 const ListLanding1 = (props) => {
   console.log("props:", props);
   const { user } = props;

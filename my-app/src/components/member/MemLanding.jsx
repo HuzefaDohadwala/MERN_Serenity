@@ -5,20 +5,17 @@ import MemLanding2 from "./MemLanding2";
 import MemLanding3 from "./MemLanding3";
 import MemLanding4 from "./MemLanding4";
 import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../UserContext";
 
 const MemLanding = () => {
-  const [user, setUser] = useState({});
+  const { user } = useContext(UserContext); // Use the user state from the UserContext
   const location = useLocation();
 
   useEffect(() => {
-    console.log("location.state:", location.state);
-    const { state } = location;
-    if (state && state.user) {
-      console.log("user:", state.user);
-      setUser(state.user);
-    }
-  }, [location]);
-
+    console.log("Memberlanding component mounted");
+    console.log("User:", user);
+  }, [user]);
   console.log("user state:", user.user);
 
   return (

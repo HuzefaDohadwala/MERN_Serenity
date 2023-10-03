@@ -9,6 +9,8 @@ import axios from "axios";
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../UserContext";
 
 const Login = () => {
   const history = useNavigate(); // Use useNavigate hook at the component's top-level scope
@@ -16,7 +18,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-
+  const { setUser } = useContext(UserContext); // Use the setUser function from the UserContext
   // error state
   const [error, setError] = useState(null);
 
@@ -36,7 +38,8 @@ const Login = () => {
       console.log(res);
       console.log("Setting user in state");
       console.log(res.data);
-      history("/member/landing",{ state: { user: res.data } });
+      setUser(res.data); // Set the user state using the setUser function from the UserContext
+      history("/member/landing");
     } catch (err) {
       console.log(err);
       setError(err.response.data.msg);

@@ -6,21 +6,17 @@ import ListLanding3 from "./ListLanding3";
 import Footer from "../Footer";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../../UserContext";
 
 const ListLanding = () => {
-  const [user, setUser] = useState({});
+  const { user } = useContext(UserContext); // Use the user state from the UserContext
   const location = useLocation();
 
   useEffect(() => {
-    console.log("location.state:", location.state);
-    const { state } = location;
-    if (state && state.user) {
-      console.log("user:", state.user);
-      setUser(state.user);
-    }
-  }, [location]);
-
-  console.log("user state:", user.user);
+    console.log("ListenerLanding component mounted");
+    console.log("User:", user);
+  }, [user]);
 
   return (
     <div>

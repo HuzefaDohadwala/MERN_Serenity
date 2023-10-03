@@ -8,6 +8,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { UserContext } from "../../UserContext";
+import { useContext } from "react";
 
 const ListLogin = () => {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ const ListLogin = () => {
     listenerPassword: "",
   });
   const [loading, setLoading] = useState(false);
+  const { setUser } = useContext(UserContext); // Use the setUser function from the UserContext
   const [error, setError] = useState(null);
 
   const handleChange = (e) => {
@@ -29,11 +32,15 @@ const ListLogin = () => {
     try {
       console.log("Login form submitted");
       console.log("Sending request to /login route");
-      const res = await axios.post("http://localhost:5000/listener/login", inputs);
+      const res = await axios.post(
+        "http://localhost:5000/listener/login",
+        inputs
+      );
       console.log(res);
       console.log("Setting listener in state");
       console.log(res.data);
-      navigate("/listener/landing", { state: { user: res.data } });
+      setUser(res.data); // Set the user state using the setUser function from the UserContext
+      navigate("/listener/landing");
     } catch (err) {
       console.log(err);
       setError(err.response.data.msg);
