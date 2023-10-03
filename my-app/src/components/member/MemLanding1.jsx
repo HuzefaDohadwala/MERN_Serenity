@@ -1,10 +1,14 @@
 import React from "react";
 import "./MemLanding1.css";
 
-const MemLanding1 = () => {
+const MemLanding1 = (props) => {
+  console.log("props:", props);
+  const { user } = props;
   return (
     <div className="ml1_container">
       <div className="ml1_title">
+        
+        <h1>Welcome {user.username}</h1>
         <h1>Get Yourself someone who will listen to you!!</h1>
       </div>
       <div className="ml1_text">

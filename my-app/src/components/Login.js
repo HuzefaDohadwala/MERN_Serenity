@@ -30,9 +30,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("Login form submitted");
+      console.log("Sending request to /login route");
       const res = await axios.post("http://localhost:5000/login", inputs);
       console.log(res);
-      history("/member/landing");
+      console.log("Setting user in state");
+      console.log(res.data);
+      history("/member/landing",{ state: { user: res.data } });
     } catch (err) {
       console.log(err);
       setError(err.response.data.msg);

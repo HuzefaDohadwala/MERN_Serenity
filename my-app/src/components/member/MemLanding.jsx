@@ -4,36 +4,27 @@ import NavMem from "./NavMem";
 import MemLanding2 from "./MemLanding2";
 import MemLanding3 from "./MemLanding3";
 import MemLanding4 from "./MemLanding4";
-import axios from "axios";
-axios.defaults.withCredentials = true;
+import { useLocation } from "react-router-dom";
 
 const MemLanding = () => {
-  // const [user, setUser] = useState();
+  const [user, setUser] = useState({});
+  const location = useLocation();
 
-  // const sednRequest = async () => {
-  //   const res = await axios
-  //     .get("http://localhost:5000/user", {
-  //       withCredentials: true,
-  //     })
-  //     .catch((err) => console.log(err));
-  //   const data = await res.data;
-  //   return data;
-  // };
+  useEffect(() => {
+    console.log("location.state:", location.state);
+    const { state } = location;
+    if (state && state.user) {
+      console.log("user:", state.user);
+      setUser(state.user);
+    }
+  }, [location]);
 
-  // useEffect(() => {
-  //   sednRequest().then((data) => setUser(data.user));
-  // }, []);
-
-  // console.log(user);
+  console.log("user state:", user.user);
 
   return (
     <div>
       <NavMem />
-      {/* {user && <h1>{user.username}</h1>} */}
-      <MemLanding1 />
-      <MemLanding2 />
-      <MemLanding3 />
-      <MemLanding4 />
+      <MemLanding1 user={user.user} />
     </div>
   );
 };

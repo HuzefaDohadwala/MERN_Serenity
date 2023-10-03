@@ -24,22 +24,21 @@ const ListLogin = () => {
       [e.target.name]: e.target.value,
     }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     try {
+      console.log("Login form submitted");
+      console.log("Sending request to /login route");
       const res = await axios.post("http://localhost:5000/listener/login", inputs);
       console.log(res);
-      setLoading(false);
-      navigate("/listener/landing");
+      console.log("Setting listener in state");
+      console.log(res.data);
+      navigate("/listener/landing", { state: { user: res.data } });
     } catch (err) {
       console.log(err);
-      setLoading(false);
       setError(err.response.data.msg);
     }
   };
-
   return (
     <Box
       sx={{

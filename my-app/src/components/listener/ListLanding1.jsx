@@ -1,10 +1,13 @@
 import React from "react";
 import "./ListLanding1.css";
 
-const ListLanding1 = () => {
+const ListLanding1 = (props) => {
+  console.log("props:", props);
+  const { user } = props;
   return (
     <div className="ll1_container">
       <div className="ll1_title">
+        <h1>Welcome {user.listenerUsername}</h1>
         <h1>Have a chat with the members</h1>
       </div>
       <div className="ll1_text">

@@ -93,7 +93,24 @@ const login = async (req, res, next) => {
   }
 };
 
+const getUser = async (req, res, next) => {
+  //log getUser controller called
+  console.log("Get user controller called...");
+  //log request headers
+  console.log("Request body:");
+  console.log(req.body);
+  //log request data
+  console.log("Request data:");
+  console.log(req.data);
+  try {
+    const user = await User.findById(req.data.user._id);
+    res.json(user);
+    console.log("User found!");
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
 
 exports.signup = signup; // Export the signup controller
 exports.login = login; // Export the login controller
-
+exports.getUser = getUser; // Export the getUser controller

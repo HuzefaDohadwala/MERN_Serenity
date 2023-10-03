@@ -14,6 +14,6 @@ router.post("/signup", signup);
 
 router.post("/login", login);
 
-
+router.get("/api/user", getUser);
 
 module.exports = router;
