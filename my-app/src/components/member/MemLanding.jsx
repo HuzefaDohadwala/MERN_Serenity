@@ -21,7 +21,7 @@ const MemLanding = () => {
   return (
     <div>
       <NavMem />
-      <MemLanding1 user={user.user} />
+      <MemLanding1 />
     </div>
   );
 };
