@@ -120,11 +120,12 @@ io.on("connection", (socket) => {
       console.log(member);
     });
 
-    //log requests
+    // log requests
     console.log("Requests:");
     requests.forEach((request) => {
       console.log(request);
     });
+
 
     emitRequestsUpdate();
   });
@@ -136,11 +137,12 @@ io.on("connection", (socket) => {
     // Add the listener details to the request object
     list = listener.username;
     mem = request.member;
+    request.listener = list;
 
     console.log(listener.username);
     console.log(listener.socket);
 
-    // Remove the accepted request from the set of requests
+   
     // Remove the accepted request from the set of requests
     requests.forEach((req) => {
       if (req.member.user._id === request.member.user._id) {
@@ -149,7 +151,7 @@ io.on("connection", (socket) => {
       }
     });
 
-    //log requests
+    // log requests
     console.log("Requests:");
     requests.forEach((request) => {
       console.log(request);
@@ -175,16 +177,21 @@ io.on("connection", (socket) => {
     console.log("Joining room:");
     socket.join(roomName);
     //log member socket
-    
-    io.to(mem.socket).emit("roomJoined", roomName);
-    console.log("Member Joined room:");
-    io.to(listener.socket).emit("roomJoined", roomName);
-    console.log(listener.socket);
-    console.log("Listener Joined room:");
+    // Log the list of sockets in the room
+    const socketsInRoom = io.sockets.adapter.rooms.get(roomName);
+    console.log("Sockets in room:", socketsInRoom);
+
+    io.to(mem.user._id).emit("joinRoom", { roomName, listener });
+    console.log("Member informed about room:");
+  });
+
+  socket.on("joinRoom", ({ roomName, listener }) => {
+    // Add the member to the private room
+    socket.join(roomName);
 
     // Emit a roomJoined event to both the member and listener
-    io.to(socket.id).emit("roomJoined", roomName);
-    io.to(request.member.socket).emit("roomJoined", roomName);
+    io.to(mem.socket).emit("roomJoined", { roomName, listener });
+    io.to(listener.socket).emit("roomJoined", { roomName, listener });
   });
 
   socket.on("disconnect", () => {

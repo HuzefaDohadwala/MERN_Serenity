@@ -5,7 +5,12 @@ import { UserContext } from "../../UserContext";
 
 const MemLanding1 = () => {
   const { user } = useContext(UserContext);
+
+  const [socket, setSocket] = useState(null);
   const [isReady, setIsReady] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [listener, setListener] = useState(null);
+  const [roomName, setRoomName] = useState(null);
 
   useEffect(() => {
     console.log("User data changed:", user);
@@ -30,6 +35,35 @@ const MemLanding1 = () => {
     }
   }, [isReady]);
 
+  // handle joinRoom event
+  useEffect(() => {
+    if (socket !== null) {
+      socket.on("joinRoom", ({ roomName, listener }) => {
+        console.log(`Joining room ${roomName} with listener ${listener.username}`);
+        // emit a roomJoined event to the server with the roomName and listener properties
+        socket.emit("roomJoined", {
+          roomName: roomName,
+          listener: listener,
+        });
+        // store the roomName and listener properties in the state
+        setRoomName(roomName);
+        setListener(listener);
+      });
+    }
+  }, [socket]);
+
+  // handle roomJoined event
+  useEffect(() => {
+    if (socket !== null) {
+      socket.on("roomJoined", ({ roomName, listener }) => {
+        console.log(`Joined room ${roomName} with listener ${listener.username}`);
+        // store the roomName and listener properties in the state
+        setRoomName(roomName);
+        setListener(listener);
+      });
+    }
+  }, [socket]);
+
   const handleFindListener = () => {
     console.log("Find Listener button clicked");
     if (socket === null) {
@@ -49,9 +83,9 @@ const MemLanding1 = () => {
           member: user,
           message: "Anxiety",
         });
-      });
 
-      setSocket(newSocket);
+        setSocket(newSocket);
+      });
     } else {
       console.log("Socket.IO connection already open");
       console.log("Requesting a listener for user:", user.user.username);
@@ -64,7 +98,11 @@ const MemLanding1 = () => {
     }
   };
 
-  const [socket, setSocket] = useState(null);
+  // call the handleJoinRoom function when the "Join Room" button is clicked
+  const handleJoinRoomClick = () => {
+    console.log("Join Room button clicked");
+    setShowPopUp(false);
+  };
 
   return (
     <div className="ml1_container">
@@ -84,6 +122,16 @@ const MemLanding1 = () => {
           <button>Text Listener</button>
         </div>
       </div>
+      {showPopUp && (
+        <div className="pop-up">
+          <h2>Chat with {listener.username}</h2>
+          <p>Do you want to join the chat room?</p>
+          <div className="pop-up-buttons">
+            <button onClick={() => setShowPopUp(false)}>Cancel</button>
+            <button onClick={handleJoinRoomClick}>Join Room</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
