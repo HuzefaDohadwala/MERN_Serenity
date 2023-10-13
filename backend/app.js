@@ -126,7 +126,6 @@ io.on("connection", (socket) => {
       console.log(request);
     });
 
-
     emitRequestsUpdate();
   });
 
@@ -137,12 +136,13 @@ io.on("connection", (socket) => {
     // Add the listener details to the request object
     list = listener.username;
     mem = request.member;
+    memSocket = request.socket;
+    console.log(memSocket);
     request.listener = list;
 
     console.log(listener.username);
     console.log(listener.socket);
 
-   
     // Remove the accepted request from the set of requests
     requests.forEach((req) => {
       if (req.member.user._id === request.member.user._id) {
@@ -174,24 +174,33 @@ io.on("connection", (socket) => {
     }
 
     console.log("Room name:", roomName);
-    console.log("Joining room:");
+    console.log("Listener joining room:");
     socket.join(roomName);
-    //log member socket
+    console.log("Listener socket :", listener.socket);
+
     // Log the list of sockets in the room
     const socketsInRoom = io.sockets.adapter.rooms.get(roomName);
     console.log("Sockets in room:", socketsInRoom);
 
-    io.to(mem.user._id).emit("joinRoom", { roomName, listener });
+    console.log("Socket I am emmitting to:", memSocket);
+
+    io.to(memSocket).emit("joinRoom", { roomName, listener });
     console.log("Member informed about room:");
   });
 
-  socket.on("joinRoom", ({ roomName, listener }) => {
+  socket.on("roomJoined", ({ roomName, listener }) => {
     // Add the member to the private room
     socket.join(roomName);
 
     // Emit a roomJoined event to both the member and listener
-    io.to(mem.socket).emit("roomJoined", { roomName, listener });
-    io.to(listener.socket).emit("roomJoined", { roomName, listener });
+    // io.to(mem.socket).emit("roomJoined", { roomName, listener });
+    // io.to(listener.socket).emit("roomJoined", { roomName, listener });
+    console.log("Room Joined event called!!!");
+
+    const listenerSocket = listener.socket;
+    io.to(listenerSocket).emit("roomJoined", { roomName, listener });
+    const socketsInRoom = io.sockets.adapter.rooms.get(roomName);
+    console.log("Sockets in room:", socketsInRoom);
   });
 
   socket.on("disconnect", () => {

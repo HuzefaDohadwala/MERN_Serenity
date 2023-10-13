@@ -122,6 +122,7 @@ import {
   CardActions,
   Button,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import io from "socket.io-client";
 
 const ListLanding1 = (props) => {
@@ -130,6 +131,7 @@ const ListLanding1 = (props) => {
   const [open, setOpen] = useState(false);
   const [socket, setSocket] = useState(null);
   const [requests, setRequests] = useState([]);
+  const navigate = useNavigate();
 
   const handleOpen = () => {
     console.log("See Requests button clicked");
@@ -183,6 +185,12 @@ const ListLanding1 = (props) => {
       socket.on("requestsUpdate", (updatedRequests) => {
         console.log("Updated Requests received:", updatedRequests);
         setRequests(updatedRequests);
+      });
+
+      // // Listen for the roomJoined event
+      socket.on("roomJoined", (roomName) => {
+        console.log("roomJoined event received:", roomName);
+        navigate(`/chat/${roomName}`); // navigate to the "/chat/{roomname}" page
       });
     }
   }, [open, socket]);

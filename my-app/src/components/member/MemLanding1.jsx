@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import "./MemLanding1.css";
 import { io } from "socket.io-client";
 import { UserContext } from "../../UserContext";
+import { useNavigate } from "react-router-dom";
 
 const MemLanding1 = () => {
   const { user } = useContext(UserContext);
@@ -11,6 +12,7 @@ const MemLanding1 = () => {
   const [showPopUp, setShowPopUp] = useState(false);
   const [listener, setListener] = useState(null);
   const [roomName, setRoomName] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("User data changed:", user);
@@ -39,15 +41,14 @@ const MemLanding1 = () => {
   useEffect(() => {
     if (socket !== null) {
       socket.on("joinRoom", ({ roomName, listener }) => {
-        console.log(`Joining room ${roomName} with listener ${listener.username}`);
-        // emit a roomJoined event to the server with the roomName and listener properties
-        socket.emit("roomJoined", {
-          roomName: roomName,
-          listener: listener,
-        });
+        console.log(
+          `Joining room ${roomName} with listener ${listener.username}`
+        );
+
         // store the roomName and listener properties in the state
         setRoomName(roomName);
         setListener(listener);
+        setShowPopUp(true);
       });
     }
   }, [socket]);
@@ -56,7 +57,9 @@ const MemLanding1 = () => {
   useEffect(() => {
     if (socket !== null) {
       socket.on("roomJoined", ({ roomName, listener }) => {
-        console.log(`Joined room ${roomName} with listener ${listener.username}`);
+        console.log(
+          `Joined room ${roomName} with listener ${listener.username}`
+        );
         // store the roomName and listener properties in the state
         setRoomName(roomName);
         setListener(listener);
@@ -82,8 +85,10 @@ const MemLanding1 = () => {
         newSocket.emit("request", {
           member: user,
           message: "Anxiety",
+          socket: newSocket.id,
         });
-
+        //log the socket id
+        console.log("Socket ID:", newSocket.id);
         setSocket(newSocket);
       });
     } else {
@@ -94,14 +99,18 @@ const MemLanding1 = () => {
       socket.emit("request", {
         member: user,
         message: "Anxiety",
+        socket: socket.id,
       });
     }
   };
 
-  // call the handleJoinRoom function when the "Join Room" button is clicked
   const handleJoinRoomClick = () => {
     console.log("Join Room button clicked");
     setShowPopUp(false);
+
+    socket.emit("roomJoined", { roomName, listener });
+    console.log("Emitting roomJoined event to server");
+    navigate(`/chat/${roomName}`);
   };
 
   return (
