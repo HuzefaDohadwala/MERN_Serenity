@@ -9,24 +9,40 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import io from "socket.io-client";
+import { useContext } from "react";
+
+import { UserContext } from "../../src/UserContext";
 
 const ChatRoom = () => {
   const { roomName } = useParams();
-  const [socket, setSocket] = useState(null);
+  const { socket } = useContext(UserContext);
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
 
-// log roomname
-    useEffect(() => {
-        console.log("Room name:", roomName);
-        // save roomName in a const
-        const room = roomName;
-    }, [roomName]);
+  // log roomname
+  useEffect(() => {
+    console.log("Room name:", roomName);
+
+    // Listen for incoming messages
+    socket.on("received-message", (message) => {
+      console.log("Received message:", message);
+      setMessages((messages) => [...messages, message]);
+    });
+
+    // Clean up the event listener
+    return () => {
+      socket.off("received-message");
+    };
+  }, [roomName, socket]);
 
   const handleSendMessage = () => {
     console.log("Sending message:", message);
-    socket.emit("message", message);
+
+    // Emit the message to the server
+    console.log("Emitting message to the server!!");
+    socket.emit("message", message, roomName);
+
+    // Clear the message input
     setMessage("");
   };
 

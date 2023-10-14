@@ -41,7 +41,7 @@ const io = socketio(server, {
   },
   transport: ["websocket"], // Helps with the CORS error
 });
-
+const socketsInRoom = new Map();
 const listeners = new Set();
 const members = new Set();
 const requests = new Set();
@@ -49,6 +49,43 @@ const requests = new Set();
 // listen for a connection
 io.on("connection", (socket) => {
   console.log("Socket.IO connection opened");
+
+  socket.on("roomJoined", ({ roomName, listener }) => {
+    // Add the member to the private room
+    socket.join(roomName);
+
+    // add the socket to the corresponding room in the socketsInRoom map
+    // if (socketsInRoom.has(roomName)) {
+    //   socketsInRoom.get(roomName).add(socket.id);
+    // }
+
+    // console.log("Sockets in room:");
+
+    // socketsInRoom.forEach((sockets, room) => {
+    //   console.log(room, [...sockets]);
+    // });
+
+    // Emit a roomJoined event to both the member and listener
+    // io.to(mem.socket).emit("roomJoined", { roomName, listener });
+    // io.to(listener.socket).emit("roomJoined", { roomName, listener });
+    console.log("Room Joined event called!!!");
+
+    const listenerSocket = listener.socket;
+    io.to(listenerSocket).emit("roomJoined", { roomName, listener });
+    const socketsInRoom = io.sockets.adapter.rooms.get(roomName);
+    console.log("Sockets in room:", socketsInRoom);
+  });
+
+  // Listen for messages
+  socket.on("message", (message, roomName) => {
+    console.log("message handler called!!!");
+    console.log(`Received message in backend: ${message}`);
+
+    // Broadcast the message to all sockets in the room
+
+    io.to(roomName).emit("received-message", message);
+    console.log("Message broadcasted to all sockets in the room");
+  });
 
   socket.on("listenerDetails", (listener) => {
     console.log("Listener connected:", listener);
@@ -179,28 +216,23 @@ io.on("connection", (socket) => {
     console.log("Listener socket :", listener.socket);
 
     // Log the list of sockets in the room
-    const socketsInRoom = io.sockets.adapter.rooms.get(roomName);
-    console.log("Sockets in room:", socketsInRoom);
+    // const socketsInRoom = io.sockets.adapter.rooms.get(roomName);
+    if (!socketsInRoom.has(roomName)) {
+      socketsInRoom.set(roomName, new Set());
+    }
+    socketsInRoom.get(roomName).add(listener.socket);
+    socketsInRoom.get(roomName).add(memSocket);
+
+    console.log(`Sockets in room ${roomName}:`, socketsInRoom.get(roomName));
+    console.log("Sockets in room:");
+    socketsInRoom.forEach((sockets, room) => {
+      console.log(room, [...sockets]);
+    });
 
     console.log("Socket I am emmitting to:", memSocket);
 
     io.to(memSocket).emit("joinRoom", { roomName, listener });
     console.log("Member informed about room:");
-  });
-
-  socket.on("roomJoined", ({ roomName, listener }) => {
-    // Add the member to the private room
-    socket.join(roomName);
-
-    // Emit a roomJoined event to both the member and listener
-    // io.to(mem.socket).emit("roomJoined", { roomName, listener });
-    // io.to(listener.socket).emit("roomJoined", { roomName, listener });
-    console.log("Room Joined event called!!!");
-
-    const listenerSocket = listener.socket;
-    io.to(listenerSocket).emit("roomJoined", { roomName, listener });
-    const socketsInRoom = io.sockets.adapter.rooms.get(roomName);
-    console.log("Sockets in room:", socketsInRoom);
   });
 
   socket.on("disconnect", () => {

@@ -6,9 +6,8 @@ import { useNavigate } from "react-router-dom";
 import NavMem from "./NavMem";
 
 const MemLanding1 = () => {
-  const { user } = useContext(UserContext);
+  const { user, socket, setSocket } = useContext(UserContext);
 
-  const [socket, setSocket] = useState(null);
   const [isReady, setIsReady] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const [listener, setListener] = useState(null);
