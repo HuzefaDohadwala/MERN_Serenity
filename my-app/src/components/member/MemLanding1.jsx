@@ -3,6 +3,7 @@ import "./MemLanding1.css";
 import { io } from "socket.io-client";
 import { UserContext } from "../../UserContext";
 import { useNavigate } from "react-router-dom";
+import NavMem from "./NavMem";
 
 const MemLanding1 = () => {
   const { user } = useContext(UserContext);
@@ -114,33 +115,36 @@ const MemLanding1 = () => {
   };
 
   return (
-    <div className="ml1_container">
-      <div className="ml1_title">
-        <h1>Welcome {user.user.username}</h1>
-        <h1>Get Yourself someone who will listen to you!!</h1>
-      </div>
-      <div className="ml1_text">
-        <p>Send a request to a listener of your choice.</p>
-        <p>Chat with listeners preiously chosen by you.</p>
-      </div>
-      <div className="mem1Btn_area">
-        <div className="mem1_btn">
-          <button onClick={handleFindListener}>Find Listener</button>
+    <div>
+      <NavMem />
+      <div className="ml1_container">
+        <div className="ml1_title">
+          <h1>Welcome {user.user.username}</h1>
+          <h1>Get Yourself someone who will listen to you!!</h1>
         </div>
-        <div className="mem1_btn">
-          <button>Text Listener</button>
+        <div className="ml1_text">
+          <p>Send a request to a listener of your choice.</p>
+          <p>Chat with listeners preiously chosen by you.</p>
         </div>
-      </div>
-      {showPopUp && (
-        <div className="pop-up">
-          <h2>Chat with {listener.username}</h2>
-          <p>Do you want to join the chat room?</p>
-          <div className="pop-up-buttons">
-            <button onClick={() => setShowPopUp(false)}>Cancel</button>
-            <button onClick={handleJoinRoomClick}>Join Room</button>
+        <div className="mem1Btn_area">
+          <div className="mem1_btn">
+            <button onClick={handleFindListener}>Find Listener</button>
+          </div>
+          <div className="mem1_btn">
+            <button>Text Listener</button>
           </div>
         </div>
-      )}
+        {showPopUp && (
+          <div className="pop-up">
+            <h2>Chat with {listener.username}</h2>
+            <p>Do you want to join the chat room?</p>
+            <div className="pop-up-buttons">
+              <button onClick={() => setShowPopUp(false)}>Cancel</button>
+              <button onClick={handleJoinRoomClick}>Join Room</button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
