@@ -8,6 +8,7 @@ const socketio = require("socket.io");
 const Room = require("./models/Room");
 const e = require("express");
 const app = express();
+const Message = require("./models/Message");
 
 const allowedOrigins = ["http://localhost:3000"]; // replace with your frontend URL
 const corsOptions = {
@@ -31,6 +32,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use("/", router);
 app.use("/listener", require("./routes/listener-routes"));
+app.use("/api", require("./routes/api-routes"));
 
 // create a server
 const server = http.createServer(app);
@@ -47,6 +49,10 @@ const membersAndListenersInRoom = new Map(); // Stores the roomName and correspo
 const listeners = new Set();
 const members = new Set();
 const requests = new Set();
+
+const util = require('util');
+const promisifyRoomFindOne = util.promisify(Room.findOne);
+
 
 // listen for a connection
 io.on("connection", (socket) => {
@@ -71,15 +77,46 @@ io.on("connection", (socket) => {
     console.log("Sockets in room:", socketsInRoom);
   });
 
-  // Listen for messages
-  socket.on("message", (message, roomName) => {
+  socket.on("message", (message, roomName, senderId) => {
     console.log("message handler called!!!");
     console.log(`Received message in backend: ${message}`);
+    console.log(`Sender ID: ${senderId}`);
 
-    // Broadcast the message to all sockets in the room
+    // query the database to get the room details
+    Room.findOne({
+      roomname: roomName,
+      $or: [{ member: senderId }, { listener: senderId }],
+    })
+      .exec()
+      .then((room) => {
+        let receiverId;
+        if (room.member.toString() === senderId) {
+          receiverId = room.listener;
+        } else {
+          receiverId = room.member;
+        }
+        console.log(`Receiver id: ${receiverId}`);
 
-    io.to(roomName).emit("received-message", message);
-    console.log("Message broadcasted to all sockets in the room");
+        // Save the message to the database with the sender, receiver, and room information
+        const newMessage = new Message({
+          sender: senderId,
+          receiver: receiverId,
+          message: message,
+          timestamp: Date.now(),
+          roomName: roomName,
+        });
+        return newMessage.save();
+      })
+      .then((savedMessage) => {
+        console.log("Message saved to database:", savedMessage);
+
+        // Broadcast the message to all sockets in the room
+        io.to(roomName).emit("received-message", message);
+        console.log("Message broadcasted to all sockets in the room");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 
   socket.on("listenerDetails", (listener) => {
