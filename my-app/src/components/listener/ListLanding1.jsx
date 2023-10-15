@@ -40,9 +40,12 @@ const ListLanding1 = (props) => {
     const memberSocket = request.socket;
     console.log("Member socket:", memberSocket);
 
+    console.log("USer", user);
+
     // Emit the accept event to the server with the request details
     socket.emit("requestAccepted", request, {
-      username: user.listenerUsername,
+      // username: user.listenerUsername,
+      listener: user,
       socket: socket.id,
     });
 
@@ -84,9 +87,9 @@ const ListLanding1 = (props) => {
       });
 
       // // Listen for the roomJoined event
-      socket.on("roomJoined", (roomName) => {
-        console.log("roomJoined event received:", roomName.roomName);
-        navigate(`/chat/${roomName.roomName}`);
+      socket.on("roomJoined", (data) => {
+        console.log("roomJoined event received:", data.roomName);
+        navigate(`/chat/${data.roomName}`);
       });
     }
   }, [open, socket, memberSocket, navigate]);

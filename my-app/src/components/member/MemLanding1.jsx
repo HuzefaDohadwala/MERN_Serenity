@@ -14,6 +14,8 @@ const MemLanding1 = () => {
   const [roomName, setRoomName] = useState(null);
   const navigate = useNavigate();
 
+  const [info, setInfo] = useState(null);
+
   useEffect(() => {
     console.log("User data changed:", user);
     localStorage.setItem("user", JSON.stringify(user));
@@ -39,15 +41,20 @@ const MemLanding1 = () => {
 
   // handle joinRoom event
   useEffect(() => {
+    console.log("Useffect called");
     if (socket !== null) {
-      socket.on("joinRoom", ({ roomName, listener }) => {
+      console.log("If condition satisfied");
+      socket.on("joinRoom", (data) => {
+        console.log("Join room event received");
+        setInfo(data);
+        console.log("Data passed to frontend :", data);
         console.log(
-          `Joining room ${roomName} with listener ${listener.username}`
+          `Joining room ${data.roomName} with listener ${data.listener.listenerUsername}`
         );
 
         // store the roomName and listener properties in the state
-        setRoomName(roomName);
-        setListener(listener);
+        setRoomName(data.roomName);
+        setListener(data.listener);
         setShowPopUp(true);
       });
     }
@@ -56,13 +63,14 @@ const MemLanding1 = () => {
   // handle roomJoined event
   useEffect(() => {
     if (socket !== null) {
-      socket.on("roomJoined", ({ roomName, listener }) => {
+      socket.on("roomJoined", (data) => {
+        console.log("Data received by Roomjoined :", data);
         console.log(
-          `Joined room ${roomName} with listener ${listener.username}`
+          `Joined room ${data.roomName} with listener ${data.listener.listenerUsername}`
         );
         // store the roomName and listener properties in the state
-        setRoomName(roomName);
-        setListener(listener);
+        setRoomName(data.roomName);
+        setListener(data.listener);
       });
     }
   }, [socket]);
@@ -107,8 +115,8 @@ const MemLanding1 = () => {
   const handleJoinRoomClick = () => {
     console.log("Join Room button clicked");
     setShowPopUp(false);
-
-    socket.emit("roomJoined", { roomName, listener });
+    console.log("Room name:", roomName);
+    socket.emit("roomJoined", { roomName, info });
     console.log("Emitting roomJoined event to server");
     navigate(`/chat/${roomName}`);
   };
@@ -135,7 +143,7 @@ const MemLanding1 = () => {
         </div>
         {showPopUp && (
           <div className="pop-up">
-            <h2>Chat with {listener.username}</h2>
+            <h2>Chat with {listener.listenerUsername}</h2>
             <p>Do you want to join the chat room?</p>
             <div className="pop-up-buttons">
               <button onClick={() => setShowPopUp(false)}>Cancel</button>
