@@ -34,6 +34,18 @@ const listenerSignup = async (req, res) => {
   }
 };
 
+const getListener = async (req, res) => {
+  try {
+    const listener = await Listener.findById(req.params.id);
+    if (!listener) {
+      return res.status(404).json({ msg: "Listener not found" });
+    }
+    res.status(200).json(listener);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+
 const listenerLogin = async (req, res) => {
   //log login controller called
   console.log("Login controller called...");
@@ -61,4 +73,4 @@ const listenerLogin = async (req, res) => {
   }
 };
 
-module.exports = { listenerSignup, listenerLogin };
+module.exports = { listenerSignup, listenerLogin, getListener };

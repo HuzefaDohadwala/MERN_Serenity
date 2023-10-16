@@ -50,9 +50,8 @@ const listeners = new Set();
 const members = new Set();
 const requests = new Set();
 
-const util = require('util');
-const promisifyRoomFindOne = util.promisify(Room.findOne);
-
+const util = require("util");
+// const promisifyRoomFindOne = util.promisify(Room.findOne);
 
 // listen for a connection
 io.on("connection", (socket) => {
@@ -75,6 +74,24 @@ io.on("connection", (socket) => {
     });
     const socketsInRoom = io.sockets.adapter.rooms.get(data.roomName);
     console.log("Sockets in room:", socketsInRoom);
+  });
+
+  socket.on("getRooms", (data) => {
+    // query the database to get the room details
+    console.log("Get rooms called!!!");
+    console.log("Data inside the params:", data);
+    console.log("User id:", data.user._id);
+    Room.find({
+      $or: [{ member: data.user._id }, { listener: data.user._id }],
+    })
+      .exec()
+      .then((rooms) => {
+        console.log("Rooms found in db:", rooms);
+        socket.emit("rooms", rooms);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 
   socket.on("message", (message, roomName, senderId) => {
@@ -178,7 +195,7 @@ io.on("connection", (socket) => {
     requests.add(request);
 
     // Emit the request to all connected listeners
-    console.log("Emitted requests to listeners");
+    console.log("Emitted requests to listeners!!");
     listeners.forEach((listener) => {
       io.to(listener.socket).emit("request", request);
     });

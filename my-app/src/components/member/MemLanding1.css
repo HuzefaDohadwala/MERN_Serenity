@@ -7,6 +7,13 @@
   overflow: hidden;
 }
 
+/* Sidebar */
+.w-1\/4 {
+  height: calc(100vh - 64px); /* subtract the height of the navbar */
+  overflow-y: auto; /* add a scrollbar if the content overflows */
+  margin-top: 64px; /* add a margin to the top to push the sidebar down */
+}
+
 .ml1_title {
   margin-top: 14%;
   color: #7e506c;
