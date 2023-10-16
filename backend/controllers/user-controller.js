@@ -53,6 +53,8 @@ const login = async (req, res, next) => {
 
     //get the user input
     const { email, password } = req.body;
+    console.log("Request body:");
+    console.log(req.body);
 
     //log
     console.log("Checking if user exists...");

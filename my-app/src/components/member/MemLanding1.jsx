@@ -4,6 +4,8 @@ import { io } from "socket.io-client";
 import { UserContext } from "../../UserContext";
 import { useNavigate } from "react-router-dom";
 import NavMem from "./NavMem";
+import RoomList from "../RoomList";
+import ChatRoom from "../ChatRoom"; // import the ChatRoom component
 
 const MemLanding1 = () => {
   const { user, socket, setSocket } = useContext(UserContext);
@@ -15,6 +17,8 @@ const MemLanding1 = () => {
   const navigate = useNavigate();
 
   const [info, setInfo] = useState(null);
+
+  const [showChatRoom, setShowChatRoom] = useState(false); // add state variable for chat room
 
   useEffect(() => {
     console.log("User data changed:", user);
@@ -111,47 +115,64 @@ const MemLanding1 = () => {
       });
     }
   };
-
-  const handleJoinRoomClick = () => {
+  const handleJoinRoomClick = (roomName) => {
     console.log("Join Room button clicked");
     setShowPopUp(false);
     console.log("Room name:", roomName);
     socket.emit("roomJoined", { roomName, info });
     console.log("Emitting roomJoined event to server");
-    navigate(`/chat/${roomName}`);
+    setShowChatRoom(true); // set showChatRoom state to true
   };
 
   return (
     <div>
       <NavMem />
-      <div className="ml1_container">
-        <div className="ml1_title">
-          <h1> {user.user.username}</h1>
-          <h1>Get Yourself someone who will listen to you!!</h1>
-        </div>
-        <div className="ml1_text">
-          <p>Send a request to a listener of your choice.</p>
-          <p>Chat with listeners preiously chosen by you.</p>
-        </div>
-        <div className="mem1Btn_area">
+      <div className="flex">
+        {/* Sidebar */}
+        <div className="w-1/4 bg-gray-200 p-4">
           <div className="mem1_btn">
             <button onClick={handleFindListener}>Find Listener</button>
           </div>
-          <div className="mem1_btn">
-            <button>Text Listener</button>
+          <RoomList />
+        </div>
+
+        {/* Chat area */}
+        <div className="w-3/4 bg-gray-100 p-4">
+          {showChatRoom ? (
+            <ChatRoom roomName={roomName} />
+          ) : (
+            <div className="ml1_container">
+              <div className="ml1_title">
+                <h1> {user.user.username}</h1>
+                <h1>Get Yourself someone who will listen to you!!</h1>
+              </div>
+              <div className="ml1_text">
+                <p>Send a request to a listener of your choice.</p>
+                <p>Chat with listeners previously chosen by you.</p>
+              </div>
+              <div className="mem1Btn_area">
+                <div className="mem1_btn">
+                  <button onClick={() => setShowChatRoom(!showChatRoom)}>
+                    Text Listener
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+      {showPopUp && (
+        <div className="pop-up">
+          <h2>Chat with {listener.listenerUsername}</h2>
+          <p>Do you want to join the chat room?</p>
+          <div className="pop-up-buttons">
+            <button onClick={() => setShowPopUp(false)}>Cancel</button>
+            <button onClick={() => handleJoinRoomClick(roomName)}>
+              Join Room
+            </button>
           </div>
         </div>
-        {showPopUp && (
-          <div className="pop-up">
-            <h2>Chat with {listener.listenerUsername}</h2>
-            <p>Do you want to join the chat room?</p>
-            <div className="pop-up-buttons">
-              <button onClick={() => setShowPopUp(false)}>Cancel</button>
-              <button onClick={handleJoinRoomClick}>Join Room</button>
-            </div>
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 };
