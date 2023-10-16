@@ -126,7 +126,7 @@ const MemLanding1 = () => {
       <NavMem />
       <div className="ml1_container">
         <div className="ml1_title">
-          <h1>Welcome {user.user.username}</h1>
+          <h1> {user.user.username}</h1>
           <h1>Get Yourself someone who will listen to you!!</h1>
         </div>
         <div className="ml1_text">
