@@ -5,7 +5,6 @@ import { Route, Routes } from "react-router-dom";
 import About from "./components/About";
 import Discover from "./components/Discover";
 import Login from "./components/Login";
-import MemLanding1 from "./components/member/MemLanding1";
 import ListLanding from "./components/listener/ListLanding";
 // import MemLanding from "./components/member/MemLanding";
 import SignUp from "./components/SignUp";
