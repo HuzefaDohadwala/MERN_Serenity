@@ -16,6 +16,7 @@ import ChatRoom from "./components/ChatRoom";
 import MemMemes from "./components/member/pages/MemMemes";
 import MemTherapists from "./components/member/pages/MemTherapists";
 import MemExplore from "./components/member/pages/MemExplore";
+import DashBoard from "./components/member/DashBoard";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/member/landing" element={<MemLanding1 />} />
+        <Route path="/member/landing" element={<DashBoard/>} />
         <Route path="/listener/signup" element={<ListenerSignup />} />
         <Route path="/listener/login" element={<ListLogin />} />
         <Route path="/listener/landing" element={<ListLanding />} />
