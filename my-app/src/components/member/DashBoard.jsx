@@ -1,9 +1,10 @@
-import React from 'react';
-import SideBar from './SideBar';
-import MemExplore from './pages/MemExplore';
-import { useState } from 'react';
-import MemMemes from './pages/MemMemes';
-import MemTherapists from './pages/MemTherapists';
+import React from "react";
+import SideBar from "./SideBar";
+import MemExplore from "./pages/MemExplore";
+import { useState } from "react";
+import MemMemes from "./pages/MemMemes";
+import MemTherapists from "./pages/MemTherapists";
+import ChatBox from "./ChatBox";
 
 const Dashboard = () => {
   const [selectedComponent, setSelectedComponent] = useState(null);
@@ -21,12 +22,15 @@ const Dashboard = () => {
       </div>
 
       {/* Second Column (3/4) */}
-      <div className="w-3/4 bg-indigo-500" style={{ height: "100vh", overflowY: "auto" }}>
+      <div
+        className="w-3/4 bg-indigo-500"
+        style={{ height: "100vh", overflowY: "auto" }}
+      >
         {/* Content for the second column */}
-        {selectedComponent === 'chat' && <MemMemes/>}
-        {selectedComponent === 'therapist' && <MemTherapists/>}
-        {selectedComponent === 'explore' && <MemExplore />}
-        {selectedComponent === 'meme' && <MemMemes/>}
+        {selectedComponent === "chat" && <ChatBox />}
+        {selectedComponent === "therapist" && <MemTherapists />}
+        {selectedComponent === "explore" && <MemExplore />}
+        {selectedComponent === "meme" && <MemMemes />}
       </div>
     </div>
   );
