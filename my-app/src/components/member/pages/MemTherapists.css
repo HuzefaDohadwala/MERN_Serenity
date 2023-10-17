@@ -1,0 +1,17 @@
+.TC_container {
+  background-color: #b8a8c4;
+}
+
+.TherapistCard {
+  text-align: left;
+}
+
+.TC_btn {
+  padding: 5px 10px;
+  background-color: #7e506c;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}

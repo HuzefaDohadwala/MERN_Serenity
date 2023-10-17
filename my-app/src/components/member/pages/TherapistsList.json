@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "image": "",
+    "name": "Dr. Jane Doe",
+    "specialization": ["Anxiety", "Depression", "Trauma"],
+    "languages": ["English", "Spanish"],
+    "experience": "Over 10 years of experience in private practice and hospital settings, working with adults and adolescents.",
+    "description": "Dr. Jane Doe is a compassionate and experienced clinical psychologist with over 10 years of practice. She specializes in helping individuals overcome anxiety, depression, and trauma. Her integrative approach combines evidence-based techniques with a client-centered, strengths-based philosophy."
+  },
+  {
+    "id": 2,
+    "image": "",
+    "name": "Dr. Rajesh Singh",
+    "specialization": [
+      "Stress Management",
+      "Relationship Counseling",
+      "Self-Esteem"
+    ],
+    "languages": ["Hindi", "English"],
+    "experience": "15 years of experience in private practice and counseling centers, working with individuals and couples.",
+    "description": "Dr. Rajesh Singh is a dedicated clinical psychologist based in New Delhi. With a focus on stress management, relationship counseling, and enhancing self-esteem, he strives to create a supportive environment for his clients to grow and heal."
+  },
+  {
+    "id": 3,
+    "image": "",
+    "name": "Dr. Priya Sharma",
+    "specialization": [
+      "Child and Adolescent Psychology",
+      "Parent-Child Relationships",
+      "Academic Support"
+    ],
+    "languages": ["English", "Marathi"],
+    "experience": "12 years of experience in child and adolescent psychology, working in schools and private practice.",
+    "description": "Dr. Priya Sharma is a child psychologist with a passion for supporting young minds. She specializes in child and adolescent psychology, focusing on parent-child relationships and academic support. Dr. Sharma believes in nurturing the potential in every child."
+  },
+  {
+    "id": 4,
+    "image": "",
+    "name": "Dr. Ayesha Khan",
+    "specialization": [
+      "Couples Therapy",
+      "Marital Conflict Resolution",
+      "Intimacy Issues"
+    ],
+    "languages": ["Urdu", "English"],
+    "experience": "8 years of experience in couples therapy and marital counseling.",
+    "description": "Dr. Ayesha Khan is a skilled couples therapist based in Mumbai. With expertise in marital conflict resolution and intimacy issues, she is dedicated to helping couples strengthen their relationships and find joy in their connections."
+  },
+  {
+    "id": 5,
+    "image": "",
+    "name": "Dr. Shivani Patel",
+    "specialization": ["Anxiety Disorders", "Panic Attacks", "Phobias"],
+    "languages": ["Gujarati", "English"],
+    "experience": "9 years of experience in treating anxiety disorders, working in clinics and online therapy.",
+    "description": "Shivani Patel is a compassionate therapist specializing in anxiety disorders, panic attacks, and phobias. Through evidence-based techniques and a personalized approach, she empowers her clients to overcome their fears and live fulfilling lives."
+  },
+  {
+    "id": 6,
+    "image": "",
+    "name": "Dr. Vikram Singhania",
+    "specialization": ["Depression", "Bipolar Disorder", "Anger Management"],
+    "languages": ["Hindi", "English"],
+    "experience": "14 years of experience in mental health counseling, working in hospitals and private practice.",
+    "description": "Dr. Vikram Singhania is a seasoned mental health counselor based in Bangalore. He specializes in treating depression, bipolar disorder, and anger management. Dr. Singhania believes in providing a safe space for his clients to explore their emotions and find healing."
+  }
+]
