@@ -33,6 +33,25 @@
             "user": "User789"
           }
         ]
+      },
+      {
+        "id": 3,
+        "title": "Funny Meme 1",
+        "image": "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+        "reactions": {
+          "like": 10,
+          "love": 5
+        },
+        "comments": [
+          {
+            "text": "Haha, this is hilarious!",
+            "user": "User123"
+          },
+          {
+            "text": "Great meme!",
+            "user": "User456"
+          }
+        ]
       }
     ]
   }

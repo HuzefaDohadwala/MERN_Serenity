@@ -166,30 +166,30 @@ const MemLanding1 = () => {
             >
               <img src={listen} alt="logo" className="about2_icon about2_oppIcon" />
             </button>
-            <div
+            <button
               className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4"
               onClick={handleTherapistClick}
             >
               <img src={cosultauion} alt="therapist" className="about2_icon about2_oppIcon" />
-            </div>
-            <div
+            </button>
+            <button
               className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4"
               onClick={handleExploreClick}
             >
               <img src={loupe} alt="explore" className="about2_icon about2_oppIcon" />
-            </div>
-            <div
+            </button>
+            <button
               className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4"
               onClick={handleMemesClick}
             >
               <img src={happy} alt="meme" className="about2_icon about2_oppIcon" />
-            </div>
-            <div className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4">
+            </button>
+            <button className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4">
               <img src={profile} alt="profile" className="about2_icon about2_oppIcon" />
-            </div>
-            <div className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4">
+            </button>
+            <button className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4">
               <img src={exit} alt="meme" className="about2_icon about2_oppIcon" />
-            </div>
+            </button>
           </div>
           <div className="w-9/12">
             <RoomList onRoomSelect={handleRoomSelect} />

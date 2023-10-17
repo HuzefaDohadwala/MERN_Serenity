@@ -1,17 +1,24 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import memesData from "./Meme.json";
 
 const MemMemes = () => {
   const [memes, setMemes] = useState(memesData.memes);
+  const [clickedReactions, setClickedReactions] = useState({});
 
   const handleReaction = (memeId, reactionType) => {
+    if (clickedReactions[`${memeId}-${reactionType}`]) {
+      return;
+    }
+
     const updatedMemes = [...memes];
     const memeIndex = updatedMemes.findIndex((meme) => meme.id === memeId);
-    
+
     if (memeIndex !== -1) {
       updatedMemes[memeIndex].reactions[reactionType]++;
       setMemes(updatedMemes);
+
+      // Mark this reaction as clicked for this meme
+      setClickedReactions({ ...clickedReactions, [`${memeId}-${reactionType}`]: true });
     }
   };
 
@@ -29,15 +36,23 @@ const MemMemes = () => {
   };
 
   return (
-    <div className="meme-page">
+    <div style={{ height: "100%", overflowY: "auto" }}>
       {memes.map((meme) => (
         <div key={meme.id} className="meme-post bg-white p-4 shadow-md rounded-lg">
-          <img src={meme.image} alt={meme.title} className="w-full rounded-lg" />
+          <img src={meme.image} alt={meme.title} className="w-24 h-24 rounded-lg" />
           <div className="reactions mt-2 flex space-x-4">
-            <button onClick={() => handleReaction(meme.id, "like")} className="text-blue-500 hover:text-blue-700">
+            <button
+              onClick={() => handleReaction(meme.id, "like")}
+              className="text-blue-500 hover:text-blue-700"
+              disabled={clickedReactions[`${meme.id}-like`]}
+            >
               Like ({meme.reactions.like})
             </button>
-            <button onClick={() => handleReaction(meme.id, "love")} className="text-red-500 hover:text-red-700">
+            <button
+              onClick={() => handleReaction(meme.id, "love")}
+              className="text-red-500 hover:text-red-700"
+              disabled={clickedReactions[`${meme.id}-love`]}
+            >
               Love ({meme.reactions.love})
             </button>
           </div>
