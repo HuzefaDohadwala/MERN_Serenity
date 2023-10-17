@@ -17,6 +17,7 @@ import MemTherapists from "./components/member/pages/MemTherapists";
 import MemExplore from "./components/member/pages/MemExplore";
 import DashBoard from "./components/member/DashBoard";
 import MemLanding1 from "./components/member/MemLanding1";
+import Ocr from "./components/member/pages/Ocr";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/member/Memes" element={<MemMemes />} />
         <Route path="/member/Therapists" element={<MemTherapists />} />
         <Route path="/member/Explore" element={<MemExplore />} />
+        <Route path="/member/ocr" element={<Ocr />} />
       </Routes>
     </div>
   );

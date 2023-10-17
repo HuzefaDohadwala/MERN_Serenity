@@ -20,6 +20,7 @@
     "sass": "^1.66.1",
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",
+    "tesseract.js": "^5.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
