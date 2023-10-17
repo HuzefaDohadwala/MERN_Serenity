@@ -15,6 +15,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import io from "socket.io-client";
 import { UserContext } from "../../UserContext";
+import ChatRoom from "../ChatRoom"; // import the ChatRoom component
 
 const ListLanding1 = (props) => {
   const { user } = props;
@@ -24,6 +25,8 @@ const ListLanding1 = (props) => {
   const [memberSocket, setMemberSocket] = useState(null); // Member socket
   const [requests, setRequests] = useState([]);
   const navigate = useNavigate();
+  const [showChatRoom, setShowChatRoom] = useState(false); // add state variable for chat room
+  const [data, setData] = useState({});
 
   const handleOpen = () => {
     console.log("See Requests button clicked");
@@ -90,7 +93,9 @@ const ListLanding1 = (props) => {
       // // Listen for the roomJoined event
       socket.on("roomJoined", (data) => {
         console.log("roomJoined event received:", data.roomName);
-        navigate(`/chat/${data.roomName}`);
+        console.log("Data :", data);
+        setData(data);
+        setShowChatRoom(true);
       });
     }
   }, [open, socket, memberSocket, navigate]);
@@ -110,21 +115,27 @@ const ListLanding1 = (props) => {
         {/* Chat area */}
         <div className="w-3/4 bg-gray-100 p-4">
           {/* Render the content when needed */}
-          <div className="ml1_container">
-            <div className="ml1_title">
-              <h1>Welcome {user.listenerUsername}</h1>
-              <h1>Have a chat with the members</h1>
-            </div>
-            <div className="ml1_text">
-              <p>See requests of members who chose you.</p>
-              <p>Chat with members you previously talked to.</p>
-            </div>
-            <div className="mem1Btn_area">
-              <div className="mem1_btn">
-                <button>Text Member</button>
+
+          {showChatRoom && data.roomName && (
+            <ChatRoom roomName={data.roomName} />
+          )}
+          {!showChatRoom && (
+            <div className="ml1_container">
+              <div className="ml1_title">
+                <h1>Welcome {user.listenerUsername}</h1>
+                <h1>Have a chat with the members</h1>
+              </div>
+              <div className="ml1_text">
+                <p>See requests of members who chose you.</p>
+                <p>Chat with members you previously talked to.</p>
+              </div>
+              <div className="mem1Btn_area">
+                <div className="mem1_btn">
+                  <button>Text Member</button>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 

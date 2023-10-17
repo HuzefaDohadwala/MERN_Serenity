@@ -18,12 +18,15 @@ import profile from "./user.png";
 const MemLanding1 = () => {
   const { user, socket, setSocket } = useContext(UserContext);
 
+
+ 
   const [isReady, setIsReady] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const [listener, setListener] = useState(null);
   const [roomName, setRoomName] = useState(null);
   const navigate = useNavigate();
 
+ 
   const [info, setInfo] = useState(null);
 
   const [showChatRoom, setShowChatRoom] = useState(false);
@@ -36,7 +39,17 @@ const MemLanding1 = () => {
     localStorage.setItem("user", JSON.stringify(user));
     console.log("User data saved in local storage:", user);
   }, [user]);
+  useEffect(() => {
+    console.log("User data changed:", user);
+    localStorage.setItem("user", JSON.stringify(user));
+    console.log("User data saved in local storage:", user);
+  }, [user]);
 
+  useEffect(() => {
+    window.onload = () => {
+      setIsReady(true);
+    };
+  }, []);
   useEffect(() => {
     window.onload = () => {
       setIsReady(true);
@@ -53,6 +66,8 @@ const MemLanding1 = () => {
     }
   }, [isReady]);
 
+
+  // handle joinRoom event
   useEffect(() => {
     console.log("Useffect called");
     if (socket !== null) {
@@ -65,6 +80,7 @@ const MemLanding1 = () => {
           `Joining room ${data.roomName} with listener ${data.listener.listenerUsername}`
         );
 
+        // store the roomName and listener properties in the state
         setRoomName(data.roomName);
         setListener(data.listener);
         setShowPopUp(true);
@@ -72,6 +88,7 @@ const MemLanding1 = () => {
     }
   }, [socket]);
 
+  // handle roomJoined event
   useEffect(() => {
     if (socket !== null) {
       socket.on("roomJoined", (data) => {
@@ -79,6 +96,7 @@ const MemLanding1 = () => {
         console.log(
           `Joined room ${data.roomName} with listener ${data.listener.listenerUsername}`
         );
+        // store the roomName and listener properties in the state
         setRoomName(data.roomName);
         setListener(data.listener);
       });
@@ -98,12 +116,15 @@ const MemLanding1 = () => {
         console.log("Socket.IO connection opened");
         console.log("Requesting a listener for user:", user.user.username);
         newSocket.emit("memberDetails", user);
+  
 
+        // Emit the request event to the server with the member details and a message
         newSocket.emit("request", {
           member: user,
           message: "Anxiety",
           socket: newSocket.id,
         });
+        //log the socket id
         console.log("Socket ID:", newSocket.id);
         setSocket(newSocket);
       });
@@ -119,14 +140,13 @@ const MemLanding1 = () => {
       });
     }
   };
-
   const handleJoinRoomClick = (roomName) => {
     console.log("Join Room button clicked");
     setShowPopUp(false);
     console.log("Room name:", roomName);
     socket.emit("roomJoined", { roomName, info });
     console.log("Emitting roomJoined event to server");
-    setShowChatRoom(true);
+    setShowChatRoom(true); // set showChatRoom state to true
   };
 
   const handleRoomSelect = (roomName) => {

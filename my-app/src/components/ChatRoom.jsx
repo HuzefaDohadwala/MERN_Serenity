@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
 import { useContext } from "react";
-
 import { UserContext } from "../../src/UserContext";
 
 const ChatRoom = ({ roomName }) => {
+  console.log("Room name:", roomName);
   const { user } = useContext(UserContext);
   const { socket } = useContext(UserContext);
   const [messages, setMessages] = useState([]);
@@ -61,41 +52,52 @@ const ChatRoom = ({ roomName }) => {
   };
 
   return (
-    <Container maxWidth="md">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          {/* Chat Room: {roomName} */}
-          Chat Room: {messages.length > 0 ? messages[0].receiver : ""}
-        </Typography>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-              {messages.map((message, index) => (
-                <Typography key={index} variant="body1">
-                  {/* {message.sender} to {message.receiver}: {message.message} (
-                  {message.timestamp}) */}
-                  {message.message}
-                </Typography>
-              ))}
-            </Paper>
-          </Grid>
-          <Grid item xs={12}>
-            <Paper sx={{ p: 2, display: "flex" }}>
-              <TextField
-                label="Message"
-                variant="outlined"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                sx={{ flexGrow: 1, mr: 2 }}
-              />
-              <Button variant="contained" onClick={handleSendMessage}>
-                Send
-              </Button>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Box>
-    </Container>
+    <div className="max-w-md mx-auto my-4">
+      <div className="bg-white rounded-lg shadow-lg">
+        <div className="px-4 py-2 bg-gray-200 rounded-t-lg">
+          <h2 className="text-lg font-bold text-gray-800">
+            Chat Room: {messages.length > 0 ? messages[0].receiver : ""}
+          </h2>
+        </div>
+        <div className="p-4">
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`${
+                message.sender === user.user._id ? "text-right" : "text-left"
+              } mb-2`}
+            >
+              <div
+                className={`${
+                  message.sender === user.user._id
+                    ? "bg-blue-500 text-white rounded-br-none rounded-tl-lg"
+                    : "bg-gray-200 text-gray-800 rounded-bl-none rounded-tr-lg"
+                } inline-block px-4 py-2 rounded-lg`}
+              >
+                {message.message}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="px-4 py-2 bg-gray-200 rounded-b-lg">
+          <div className="flex">
+            <input
+              type="text"
+              className="flex-grow px-2 py-1 rounded-lg border border-gray-400 mr-2"
+              placeholder="Type your message here"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <button
+              className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+              onClick={handleSendMessage}
+            >
+              Send
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import memesData from "./Meme.json";
+import { UserContext } from "../../../UserContext";
+import { useContext } from "react";
 
 const MemMemes = () => {
   const [memes, setMemes] = useState(memesData.memes);
   const [clickedReactions, setClickedReactions] = useState({});
+  const { user } = useContext(UserContext);
+  console.log(user);
 
   const handleReaction = (memeId, reactionType) => {
     if (clickedReactions[`${memeId}-${reactionType}`]) {
@@ -18,7 +22,10 @@ const MemMemes = () => {
       setMemes(updatedMemes);
 
       // Mark this reaction as clicked for this meme
-      setClickedReactions({ ...clickedReactions, [`${memeId}-${reactionType}`]: true });
+      setClickedReactions({
+        ...clickedReactions,
+        [`${memeId}-${reactionType}`]: true,
+      });
     }
   };
 
@@ -29,7 +36,7 @@ const MemMemes = () => {
     if (memeIndex !== -1) {
       updatedMemes[memeIndex].comments.push({
         text: commentText,
-        user: "User123", // You can replace this with the user's name.
+        user: user.user.username, // You can replace this with the user's name.
       });
       setMemes(updatedMemes);
     }
@@ -38,8 +45,15 @@ const MemMemes = () => {
   return (
     <div style={{ height: "100%", overflowY: "auto" }}>
       {memes.map((meme) => (
-        <div key={meme.id} className="meme-post bg-white p-4 shadow-md rounded-lg">
-          <img src={meme.image} alt={meme.title} className="w-24 h-24 rounded-lg" />
+        <div
+          key={meme.id}
+          className="meme-post bg-white p-4 shadow-md rounded-lg"
+        >
+          <img
+            src={meme.image}
+            alt={meme.title}
+            className="w-24 h-24 rounded-lg"
+          />
           <div className="reactions mt-2 flex space-x-4">
             <button
               onClick={() => handleReaction(meme.id, "like")}
