@@ -64,15 +64,17 @@ const ChatRoom = ({ roomName }) => {
     <Container maxWidth="md">
       <Box sx={{ my: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom>
-          Chat Room: {roomName}
+          {/* Chat Room: {roomName} */}
+          Chat Room: {messages.length > 0 ? messages[0].receiver : ""}
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
               {messages.map((message, index) => (
                 <Typography key={index} variant="body1">
-                  {message.sender} to {message.receiver}: {message.message} (
-                  {message.timestamp})
+                  {/* {message.sender} to {message.receiver}: {message.message} (
+                  {message.timestamp}) */}
+                  {message.message}
                 </Typography>
               ))}
             </Paper>

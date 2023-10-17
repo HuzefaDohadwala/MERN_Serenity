@@ -79,19 +79,29 @@ io.on("connection", (socket) => {
   socket.on("getRooms", (data) => {
     // query the database to get the room details
     console.log("Get rooms called!!!");
-    console.log("Data inside the params:", data);
-    console.log("User id:", data.user._id);
+    // console.log("Data inside the params:", data);
+    // console.log("User id:", data.user._id);
     Room.find({
       $or: [{ member: data.user._id }, { listener: data.user._id }],
     })
       .exec()
       .then((rooms) => {
-        console.log("Rooms found in db:", rooms);
+        // console.log("Rooms found in db:", rooms);
         socket.emit("rooms", rooms);
       })
       .catch((err) => {
         console.log(err);
       });
+  });
+
+  socket.on("instantJoin", (data) => {
+    console.log("Instant join called!!!");
+    console.log("Data inside the params:", data);
+    socket.join(data.roomname);
+    console.log("Room Joined");
+
+    const socketsInRoom = io.sockets.adapter.rooms.get(data.roomname);
+    console.log("Sockets in room:", socketsInRoom);
   });
 
   socket.on("message", (message, roomName, senderId) => {
@@ -106,6 +116,7 @@ io.on("connection", (socket) => {
     })
       .exec()
       .then((room) => {
+        console.log("Room found in db:", room);
         let receiverId;
         if (room.member.toString() === senderId) {
           receiverId = room.listener;

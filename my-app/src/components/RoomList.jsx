@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../UserContext";
 import { io } from "socket.io-client";
 
-const RoomList = () => {
+const RoomList = (props) => {
   const { user, socket } = useContext(UserContext);
   const [rooms, setRooms] = useState([]);
 
@@ -14,7 +14,7 @@ const RoomList = () => {
       socket.emit("getRooms", user);
       console.log(user.user._id);
       socket.on("rooms", (data) => {
-        console.log("Rooms fetched:", data);
+        // console.log("Rooms fetched:", data);
         setRooms(data);
       });
 
@@ -27,6 +27,12 @@ const RoomList = () => {
       return () => clearInterval(intervalId);
     }
   }, [socket, user]);
+
+  const handleRoomSelect = (room) => {
+    console.log("Room selected:", room);
+    props.onRoomSelect(room);
+    socket.emit("instantJoin", room);
+  };
 
   useEffect(() => {
     // Fetch the latest message for each room
@@ -45,8 +51,6 @@ const RoomList = () => {
     });
   }, [rooms, socket]);
 
-
-
   return (
     <div>
       <h2>Rooms</h2>
@@ -58,8 +62,9 @@ const RoomList = () => {
           // Render the room details with the sender ID
           return (
             <li key={room._id}>
-              {/* <p>Room name: {room.roomname}</p> */}
-              <p>Sender ID: {senderId}</p>
+              <button onClick={() => handleRoomSelect(room)}>
+                Sender ID: {senderId}
+              </button>
             </li>
           );
         })}

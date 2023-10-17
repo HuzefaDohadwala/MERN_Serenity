@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./ListLanding1.css";
+import NavList from "./NavList";
 import {
   Dialog,
   DialogTitle,
@@ -35,12 +36,12 @@ const ListLanding1 = (props) => {
 
   // Handle Accept button click
   const handleAccept = (request) => () => {
-    console.log("Accepting request :", request);
+    console.log("Accepting request:", request);
 
     const memberSocket = request.socket;
     console.log("Member socket:", memberSocket);
 
-    console.log("USer", user);
+    console.log("User", user);
 
     // Emit the accept event to the server with the request details
     socket.emit("requestAccepted", request, {
@@ -95,23 +96,38 @@ const ListLanding1 = (props) => {
   }, [open, socket, memberSocket, navigate]);
 
   return (
-    <div className="ll1_container">
-      <div className="ll1_title">
-        <h1>Welcome {user.listenerUsername}</h1>
-        <h1>Have a chat with the members</h1>
-      </div>
-      <div className="ll1_text">
-        <p>See requests of members who chose you.</p>
-        <p>Chat with members you previously talked to.</p>
-      </div>
-      <div className="list1Btn_area">
-        <div className="list1_btn">
-          <button onClick={handleOpen}>See Requests</button>
+    <div>
+      <NavList />
+      <div className="flex">
+        {/* Sidebar */}
+        <div className="w-1/4 bg-gray-200 p-4">
+          <div className="mem1_btn">
+            <button onClick={handleOpen}>See Requests</button>
+          </div>
+          {/* You can add any other elements or components here if needed */}
         </div>
-        <div className="list1_btn">
-          <button>Text Member</button>
+
+        {/* Chat area */}
+        <div className="w-3/4 bg-gray-100 p-4">
+          {/* Render the content when needed */}
+          <div className="ml1_container">
+            <div className="ml1_title">
+              <h1>Welcome {user.listenerUsername}</h1>
+              <h1>Have a chat with the members</h1>
+            </div>
+            <div className="ml1_text">
+              <p>See requests of members who chose you.</p>
+              <p>Chat with members you previously talked to.</p>
+            </div>
+            <div className="mem1Btn_area">
+              <div className="mem1_btn">
+                <button>Text Member</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Requests</DialogTitle>
         <DialogContent>
@@ -145,3 +161,4 @@ const ListLanding1 = (props) => {
 };
 
 export default ListLanding1;
+  
