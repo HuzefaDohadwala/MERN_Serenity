@@ -15,3 +15,31 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
+
+.Img_border {
+  border: 5px solid #a48aa8;
+}
+
+.charges_tm {
+  background-color: #a48aa8;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.specs_tm {
+  background-color: #a48aa8;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.langs_tm {
+  background-color: #a48aa8;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.exp_tm {
+  background-color: #a48aa8;
+  border-radius: 30px;
+  text-align: center;
+}
