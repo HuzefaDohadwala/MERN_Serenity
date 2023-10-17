@@ -53,7 +53,6 @@ const RoomList = (props) => {
 
   return (
     <div>
-      <h2>Rooms</h2>
       <ul>
         {rooms.map((room) => {
           // Determine the sender ID based on whether the logged-in user is the member or listener of the room
