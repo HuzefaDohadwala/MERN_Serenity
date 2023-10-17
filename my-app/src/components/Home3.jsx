@@ -1,6 +1,7 @@
 import React from "react";
 import "./Home3.css";
 import Mpr3 from "./Mpr3.jpg";
+import { Link } from "react-router-dom";
 
 const Home3 = () => {
   return (
@@ -29,7 +30,9 @@ const Home3 = () => {
               <p>person or virtually, whichever works</p>
               <p>best for you.</p>
             </div>
-            <button className="customButton3">Find a Therapist</button>
+            <button className="customButton3">
+              <Link to="/login">Find a Therapist</Link>
+            </button>
           </div>
           <div className="rightFlex_home3 flex justify-center">
             <div className="img-container relative">

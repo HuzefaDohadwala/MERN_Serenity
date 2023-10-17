@@ -5,6 +5,7 @@ import helping from "./helping.png";
 import empathy from "./empathy.png";
 import padlock from "./padlock.png";
 import clock from "./clock.png";
+import { Link } from "react-router-dom";
 
 const Home1 = () => {
   const rows = [
@@ -57,7 +58,7 @@ const Home1 = () => {
           </tbody>
         </table>
         <button className="customButton" onClick={onButtonClick}>
-          Find a Listener
+          <Link to="/login">Find a listener</Link>
         </button>
       </div>
     </>
