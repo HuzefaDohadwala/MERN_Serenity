@@ -99,17 +99,18 @@ const MemExplore = () => {
           className="bg-[#7e506c] p-4 rounded-lg shadow-lg m-4 max-w-screen flex"
           onClick={() => handleEventSelect(event)}
         >
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 pt-8">
             <img
-              src={event.image}
+              src='https://plus.unsplash.com/premium_photo-1687777667433-601b1449f2a3?auto=format&fit=crop&q=80&w=1374&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
               alt="Card Image"
               className="h-24 w-24 rounded-full"
             />
           </div>
           <div className="ml-4 flex-grow">
-            <h2 className="text-2xl font-semibold text-white">{event.company}</h2>
-            <p className=" text-left text-white">{event.date}</p>
-            <p className=" text-left text-white">{event.location}</p>
+            <h2 className="text-2xl font-bold text-white">{event.company}</h2>
+            <p className=" text-left font-semibold text-white pt-4">{event.topic}</p>
+            <p className=" text-left font-semibold text-white">{event.date}</p>
+            <p className=" text-left font-semibold text-white">{event.location}</p>
             <div className="mt-4 text-right">
               <div>
                 <h2>User Form</h2>
@@ -165,7 +166,7 @@ const MemExplore = () => {
                   />
                   </div>
                   <div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" className="bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300 hover:bg-gradient-to-r hover:from-[#b8a8c4] hover:to-[#d96a94] transform hover:scale-105">Register</button>
                   </div>
                 </form>
               </div>
