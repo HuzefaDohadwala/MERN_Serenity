@@ -37,10 +37,10 @@ function App() {
         {/* <Route path="/member/landing" element={<MemLanding />} /> */}
         <Route path="/user" element={<Welcome />} />
         <Route path="/chat/:roomName" element={<ChatRoom />} />
-        <Route path="/member/Memes" element={<MemMemes />} />
-        <Route path="/member/Therapists" element={<MemTherapists />} />
-        <Route path="/member/Explore" element={<MemExplore />} />
-        <Route path="/member/ocr" element={<Ocr />} />
+        <Route path="/member/memes" element={<MemMemes />} />
+        <Route path="/member/therapists" element={<MemTherapists />} />
+        <Route path="/member/explore" element={<MemExplore />} />
+        <Route path="/ocr" element={<Ocr/>}/>
       </Routes>
     </div>
   );
