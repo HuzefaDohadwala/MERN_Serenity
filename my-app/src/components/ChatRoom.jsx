@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
 import { UserContext } from "../../src/UserContext";
+import send from "./send.png"
 
 const ChatRoom = ({ roomName }) => {
   console.log("Room name:", roomName);
@@ -52,14 +53,14 @@ const ChatRoom = ({ roomName }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto my-4">
+    <div className="w-full ">
       <div className="bg-white rounded-lg shadow-lg">
-        <div className="px-4 py-2 bg-gray-200 rounded-t-lg">
-          <h2 className="text-lg font-bold text-gray-800">
+        <div className="px-4 py-2 bg-[#7e506c] rounded-t-lg">
+          <h2 className="text-lg font-bold text-white">
             Chat Room: {messages.length > 0 ? messages[0].receiver : ""}
           </h2>
         </div>
-        <div className="p-4">
+        <div className="p-4 bg-[#e6e6fa]">
           {messages.map((message, index) => (
             <div
               key={index}
@@ -70,8 +71,8 @@ const ChatRoom = ({ roomName }) => {
               <div
                 className={`${
                   message.sender === user.user._id
-                    ? "bg-blue-500 text-white rounded-br-none rounded-tl-lg"
-                    : "bg-gray-200 text-gray-800 rounded-bl-none rounded-tr-lg"
+                    ? "bg-[#a48aa8] text-black font-medium rounded-br-none rounded-tl-lg"
+                    : "bg-[#d96a94] text-black font-medium rounded-bl-none rounded-tr-lg"
                 } inline-block px-4 py-2 rounded-lg`}
               >
                 {message.message}
@@ -89,10 +90,10 @@ const ChatRoom = ({ roomName }) => {
               onChange={(e) => setMessage(e.target.value)}
             />
             <button
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+              className="px-4 py-2 bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] text-white rounded-lg hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100"
               onClick={handleSendMessage}
             >
-              Send
+              <img src={send} alt="send" className="w-8 h-8 " />
             </button>
           </div>
         </div>

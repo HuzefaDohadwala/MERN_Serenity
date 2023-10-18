@@ -17,7 +17,6 @@ const ListLanding = () => {
 
   return (
     <div>
-      <NavList />
       <div className="scroll-container_5">
         <div className="scroll-area_5">
           <ListLanding1 user={user.user} />

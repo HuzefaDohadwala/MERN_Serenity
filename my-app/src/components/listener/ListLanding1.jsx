@@ -102,7 +102,6 @@ const ListLanding1 = (props) => {
 
   return (
     <div>
-      <NavList />
       <div className="flex">
         {/* Sidebar */}
         <div className="w-1/4 bg-gray-200 p-4">
