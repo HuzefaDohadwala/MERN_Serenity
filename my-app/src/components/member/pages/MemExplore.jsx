@@ -1,13 +1,13 @@
 import React from "react";
-import explore from './Explore.json';
-import './Explore.css'
-import { useState } from 'react';
+import explore from "./Explore.json";
+import "./Explore.css";
+import { useState } from "react";
 
 const MemExplore = () => {
   const [formData, setFormData] = useState({
-    time: '',
-    username: '',
-    email: '',
+    time: "",
+    username: "",
+    email: "",
   });
 
   const handleChange = (e) => {
@@ -38,63 +38,69 @@ const MemExplore = () => {
         console.error(error);
       });
   };
+
   return (
     <div style={{ height: "100%", overflowY: "auto" }}>
-    {explore.map((event, index) => (
-      <div key={index} className="bg-[#7e506c] p-4 rounded-lg shadow-lg m-4 max-w-screen flex">
-        <div className="flex-shrink-0">
-          <img src={event.image} alt="Card Image" className="h-24 w-24 rounded-full" />
-        </div>
-        <div className="ml-4 flex-grow">
-          <h2 className="text-2xl font-semibold text-white">{event.name}</h2>
-          <p className=" text-left text-white">{event.date}</p>
-          <p className=" text-left text-white">{event.location}</p>
-          <div className="mt-4 text-right">
-          <div>
-      <h2>User Form</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="time">Time:</label>
-          <input
-            type="text"
-            id="time"
-            name="time"
-            value={formData.time}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
+      {explore.map((event, index) => (
+        <div
+          key={index}
+          className="bg-[#7e506c] p-4 rounded-lg shadow-lg m-4 max-w-screen flex"
+        >
+          <div className="flex-shrink-0">
+            <img
+              src={event.image}
+              alt="Card Image"
+              className="h-24 w-24 rounded-full"
+            />
+          </div>
+          <div className="ml-4 flex-grow">
+            <h2 className="text-2xl font-semibold text-white">{event.name}</h2>
+            <p className=" text-left text-white">{event.date}</p>
+            <p className=" text-left text-white">{event.location}</p>
+            <div className="mt-4 text-right">
+              <div>
+                <h2>User Form</h2>
+                <form onSubmit={handleSubmit}>
+                  <div>
+                    <label htmlFor="time">Time:</label>
+                    <input
+                      type="text"
+                      id="time"
+                      name="time"
+                      value={formData.time}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="username">Username:</label>
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      value={formData.username}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email">Email:</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <button type="submit">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    ))}
-  </div>
-  
-
+      ))}
+    </div>
   );
 };
 

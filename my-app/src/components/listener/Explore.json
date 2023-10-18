@@ -1,0 +1,38 @@
+[
+    {
+      "image": "mental-health-seminar.jpg",
+      "description": "Join our mental health seminar to find support and guidance for your well-being.",
+      "date": "Date: November 15th, 2023",
+      "name": "Mental Health Seminar",
+      "location": "Mumbai, Bandra - Wellness Center"
+    },
+    {
+      "image": "dog-cafe-opening.jpg",
+      "description": "Explore our new dog cafe, a calming space for dog lovers to unwind and relax.",
+      "date": "Opening Soon!",
+      "name": "Paws & Relax Dog Cafe",
+      "location": "Mumbai, Downtown"
+    },
+    {
+      "image": "upcoming-events.jpg",
+      "description": "Stay tuned for exciting upcoming events focused on mental health and wellness.",
+      "date": "Various dates",
+      "name": "Upcoming Mental Health Events",
+      "location": "Online and In-Person"
+    },
+    {
+      "image": "stress-relief-workshop.jpg",
+      "description": "Learn effective stress relief techniques in our upcoming workshop.",
+      "date": "Date: December 5th, 2023",
+      "name": "Stress Relief Workshop",
+      "location": "Mumbai, Community Center"
+    },
+    {
+      "image": "mindfulness-meditation.jpg",
+      "description": "Discover the power of mindfulness meditation for a healthier mind and body.",
+      "date": "Date: November 20th, 2023",
+      "name": "Mindfulness Meditation Session",
+      "location": "Mumbai, Bandra - Wellness Center"
+    }
+  ]
+  
