@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
 import { UserContext } from "../../src/UserContext";
-import send from "./send.png"
+import send from "./send.png";
 
 const ChatRoom = ({ roomName }) => {
   console.log("Room name:", roomName);
@@ -53,7 +53,7 @@ const ChatRoom = ({ roomName }) => {
   };
 
   return (
-    <div className="w-full ">
+    <div className="w-full h-96">
       <div className="bg-white rounded-lg shadow-lg">
         <div className="px-4 py-2 bg-[#7e506c] rounded-t-lg">
           <h2 className="text-lg font-bold text-white">

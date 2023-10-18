@@ -15,6 +15,10 @@ import ChatRoom from "./components/ChatRoom";
 import MemMemes from "./components/member/pages/MemMemes";
 import MemTherapists from "./components/member/pages/MemTherapists";
 import MemExplore from "./components/member/pages/MemExplore";
+import MemProfile from "./components/member/pages/MemProfile";
+import ListExplore from "./components/listener/ListExplore";
+import ListMemes from "./components/listener/ListMemes";
+import ListProfile from "./components/listener/ListProfile";
 import DashBoard from "./components/member/DashBoard";
 import MemLanding1 from "./components/member/MemLanding1";
 import Ocr from "./components/member/pages/Ocr";
@@ -40,7 +44,11 @@ function App() {
         <Route path="/member/memes" element={<MemMemes />} />
         <Route path="/member/therapists" element={<MemTherapists />} />
         <Route path="/member/explore" element={<MemExplore />} />
-        <Route path="/ocr" element={<Ocr/>}/>
+        <Route path="/member/Profile" element={<MemProfile />} />
+        <Route path="/listener/explore" element={<ListExplore />} />
+        <Route path="/listener/memes" element={<ListMemes />} />
+        <Route path="/listener/profile" element={<ListProfile />} />
+        <Route path="/ocr" element={<Ocr />} />
       </Routes>
     </div>
   );

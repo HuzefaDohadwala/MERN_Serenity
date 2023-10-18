@@ -8,6 +8,7 @@ import ChatRoom from "../ChatRoom";
 import MemExplore from "./pages/MemExplore";
 import MemMemes from "./pages/MemMemes";
 import MemTherapists from "./pages/MemTherapists";
+import MemProfile from "./pages/MemProfile";
 import cosultauion from "./consultation.png";
 import loupe from "./loupe.png";
 import happy from "./happy.png";
@@ -30,6 +31,7 @@ const MemLanding1 = () => {
   const [showTherapist, setShowTherapist] = useState(false);
   const [showMemes, setShowMemes] = useState(false);
   const [showExplore, setShowExplore] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
 
   useEffect(() => {
     console.log("User data changed:", user);
@@ -154,6 +156,7 @@ const MemLanding1 = () => {
     setShowMemes(false);
     setShowExplore(false);
     setShowChatRoom(false);
+    setShowProfile(false);
   };
 
   const handleMemesClick = () => {
@@ -161,6 +164,7 @@ const MemLanding1 = () => {
     setShowMemes(true);
     setShowExplore(false);
     setShowChatRoom(false);
+    setShowProfile(false);
   };
 
   const handleExploreClick = () => {
@@ -168,6 +172,15 @@ const MemLanding1 = () => {
     setShowMemes(false);
     setShowExplore(true);
     setShowChatRoom(false);
+    setShowProfile(false);
+  };
+
+  const handleProfileClick = () => {
+    setShowTherapist(false);
+    setShowMemes(false);
+    setShowExplore(false);
+    setShowChatRoom(false);
+    setShowProfile(true);
   };
 
   return (
@@ -216,7 +229,10 @@ const MemLanding1 = () => {
                 className="about2_icon about2_oppIcon"
               />
             </button>
-            <button className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4 shadow-lg hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100">
+            <button
+              className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4 shadow-lg hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100"
+              onClick={handleProfileClick}
+            >
               <img
                 src={profile}
                 alt="profile"
@@ -240,25 +256,30 @@ const MemLanding1 = () => {
           {showTherapist && <MemTherapists />}
           {showMemes && <MemMemes />}
           {showExplore && <MemExplore />}
-          {!showChatRoom && !showTherapist && !showMemes && !showExplore && (
-            <div className="ml1_container">
-              <div className="ml1_title">
-                <h1> {user.user.username}</h1>
-                <h1>Get Yourself someone who will listen to you!!</h1>
-              </div>
-              <div className="ml1_text">
-                <p>Send a request to a listener of your choice.</p>
-                <p>Chat with listeners previously chosen by you.</p>
-              </div>
-              <div className="mem1Btn_area">
-                <div className="mem1_btn">
-                  <button onClick={() => setShowChatRoom(!showChatRoom)}>
-                    Text Listener
-                  </button>
+          {showProfile && <MemProfile />}
+          {!showChatRoom &&
+            !showTherapist &&
+            !showMemes &&
+            !showExplore &&
+            !showProfile && (
+              <div className="ml1_container">
+                <div className="ml1_title">
+                  <h1> {user.user.username}</h1>
+                  <h1>Get Yourself someone who will listen to you!!</h1>
+                </div>
+                <div className="ml1_text">
+                  <p>Send a request to a listener of your choice.</p>
+                  <p>Chat with listeners previously chosen by you.</p>
+                </div>
+                <div className="mem1Btn_area">
+                  <div className="mem1_btn">
+                    <button onClick={() => setShowChatRoom(!showChatRoom)}>
+                      Text Listener
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
         </div>
       </div>
       {showPopUp && (

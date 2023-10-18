@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./ListLanding1.css";
-import NavList from "./NavList";
 import {
   Dialog,
   DialogTitle,
@@ -16,6 +15,15 @@ import { useNavigate } from "react-router-dom";
 import io from "socket.io-client";
 import { UserContext } from "../../UserContext";
 import ChatRoom from "../ChatRoom"; // import the ChatRoom component
+import ListExplore from "./ListExplore";
+import ListMemes from "./ListMemes";
+import ListProfile from "./ListProfile";
+import cosultauion from "./consultation.png";
+import loupe from "./loupe.png";
+import happy from "./happy.png";
+import exit from "./exit.png";
+import listen from "./listen.png";
+import profile from "./user.png";
 
 const ListLanding1 = (props) => {
   const { user } = props;
@@ -27,6 +35,10 @@ const ListLanding1 = (props) => {
   const navigate = useNavigate();
   const [showChatRoom, setShowChatRoom] = useState(false); // add state variable for chat room
   const [data, setData] = useState({});
+
+  const [showMemes, setShowMemes] = useState(false);
+  const [showExplore, setShowExplore] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
 
   const handleOpen = () => {
     console.log("See Requests button clicked");
@@ -100,25 +112,102 @@ const ListLanding1 = (props) => {
     }
   }, [open, socket, memberSocket, navigate]);
 
+  const handleMemesClick = () => {
+    setShowMemes(true);
+    setShowExplore(false);
+    setShowChatRoom(false);
+    setShowProfile(false);
+  };
+
+  const handleExploreClick = () => {
+    setShowMemes(false);
+    setShowExplore(true);
+    setShowChatRoom(false);
+    setShowProfile(false);
+  };
+
+  const handleProfileClick = () => {
+    setShowMemes(false);
+    setShowExplore(false);
+    setShowChatRoom(false);
+    setShowProfile(true);
+  };
+
   return (
     <div>
-      <div className="flex">
+      <div className="flex h-screen">
         {/* Sidebar */}
-        <div className="w-1/4 bg-gray-200 p-4">
+        <div className="w-3/12 flex bg-[#E6E6FA]">
+          <div className=" w-3/12 ">
+            <button
+              className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 mt-20 ml-2 w-16 h-16 mb-4 shadow-lg hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100"
+              onClick={handleOpen}
+            >
+              <img
+                src={listen}
+                alt="logo"
+                className="about2_icon about2_oppIcon"
+              />
+            </button>
+
+            <button
+              className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4 shadow-lg hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100"
+              onClick={handleExploreClick}
+            >
+              <img
+                src={loupe}
+                alt="explore"
+                className="about2_icon about2_oppIcon"
+              />
+            </button>
+            <button
+              className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4 shadow-lg hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100"
+              onClick={handleMemesClick}
+            >
+              <img
+                src={happy}
+                alt="meme"
+                className="about2_icon about2_oppIcon"
+              />
+            </button>
+            <button
+              className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4 shadow-lg hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100"
+              onClick={handleProfileClick}
+            >
+              <img
+                src={profile}
+                alt="profile"
+                className="about2_icon about2_oppIcon"
+              />
+            </button>
+            <button className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4 shadow-lg hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100">
+              <img
+                src={exit}
+                alt="meme"
+                className="about2_icon about2_oppIcon"
+              />
+            </button>
+          </div>
+          <div className="w-9/12"></div>
+        </div>
+        {/* <div className="w-1/4 bg-gray-200 p-4">
           <div className="mem1_btn">
             <button onClick={handleOpen}>See Requests</button>
           </div>
-          {/* You can add any other elements or components here if needed */}
-        </div>
+          You can add any other elements or components here if needed
+        </div> */}
 
         {/* Chat area */}
-        <div className="w-3/4 bg-gray-100 p-4">
+        <div className="w-9/12 bg-gray-100 p-4">
           {/* Render the content when needed */}
 
           {showChatRoom && data.roomName && (
             <ChatRoom roomName={data.roomName} />
           )}
-          {!showChatRoom && (
+          {showMemes && <ListMemes />}
+          {showExplore && <ListExplore />}
+          {showProfile && <ListProfile />}
+          {!showChatRoom && !showMemes && !showExplore && !showProfile && (
             <div className="ml1_container">
               <div className="ml1_title">
                 <h1>Welcome {user.listenerUsername}</h1>
