@@ -6,6 +6,7 @@ import About from "./components/About";
 import Discover from "./components/Discover";
 import Login from "./components/Login";
 import ListLanding from "./components/listener/ListLanding";
+import Chatbot from "./components/Chatbot";
 // import MemLanding from "./components/member/MemLanding";
 import SignUp from "./components/SignUp";
 import Welcome from "./components/member/Welcome";
@@ -41,6 +42,7 @@ function App() {
         <Route path="/listener/landing" element={<ListLanding />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/chatbot" element={<Chatbot />} />
         {/* <Route path="/member/landing" element={<MemLanding />} /> */}
         <Route path="/user" element={<Welcome />} />
         <Route path="/chat/:roomName" element={<ChatRoom />} />
