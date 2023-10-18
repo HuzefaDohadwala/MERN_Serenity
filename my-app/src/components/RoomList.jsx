@@ -29,21 +29,68 @@ const RoomList = (props) => {
     }
   }, [socket, user]);
 
+  // const handleRoomSelect = async (room) => {
+  //   console.log("Room selected:", room);
+  //   const senderId =
+  //     user.user._id === room.listener ? room.member : room.listener;
+  //   try {
+  //     let response;
+  //     if (user.user._id === room.listener) {
+  //       // response = await axios.get(
+  //       //   `http://localhost:5000/listener/getListener/${senderId}`
+  //       // );
+  //       response = await axios.get(`http://localhost:5000/getUser/${senderId}`);
+  //     } else {
+  //       // response = await axios.get(`http://localhost:5000/getUser/${senderId}`);
+  //       response = await axios.get(
+  //         `http://localhost:5000/listener/getListener/${senderId}`
+  //       );
+  //     }
+  //     const sender = response.data;
+  //     if (!sender) {
+  //       console.error("Sender not found");
+  //       return;
+  //     }
+  //     const roomName = room.roomname;
+  //     console.log("Room name:", roomName);
+  //     props.onRoomSelect({ ...room, roomName });
+  //     socket.emit("instantJoin", room);
+  //     console.log("Sender information:", sender);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
   const handleRoomSelect = async (room) => {
     console.log("Room selected:", room);
     const senderId =
-      user.user._id !== room.member ? room.member : room.listener;
+      user.user._id === room.listener ? room.member : room.listener;
     try {
-      const response = await axios.get(
-        `http://localhost:5000/listener/getListener/${senderId}`
-      );
-      const listener = response.data;
+      let response;
+      if (user.user._id === room.listener) {
+        response = await axios.get(`http://localhost:5000/getUser/${senderId}`);
+      } else {
+        response = await axios.get(
+          `http://localhost:5000/listener/getListener/${senderId}`
+        );
+      }
+
+      const sender = response.data;
+
+      if (!sender) {
+        console.error("Sender not found");
+        // Handle this case, e.g., show a message to the user or perform a different action.
+        return;
+      }
+
       const roomName = room.roomname;
       console.log("Room name:", roomName);
       props.onRoomSelect({ ...room, roomName });
       socket.emit("instantJoin", room);
+      console.log("Sender information:", sender);
     } catch (error) {
       console.error(error);
+      // Handle the error, show a message to the user, or perform error-specific actions.
     }
   };
 

@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./ListLanding1.css";
+import { io } from "socket.io-client";
+import { UserContext } from "../../UserContext";
+import { useNavigate } from "react-router-dom";
 import {
   Dialog,
   DialogTitle,
@@ -11,10 +14,7 @@ import {
   CardActions,
   Button,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import io from "socket.io-client";
-import { UserContext } from "../../UserContext";
-import ChatRoom from "../ChatRoom"; // import the ChatRoom component
+import ChatRoom from "../ChatRoom";
 import ListExplore from "./ListExplore";
 import ListMemes from "./ListMemes";
 import ListProfile from "./ListProfile";
@@ -24,18 +24,18 @@ import happy from "./happy.png";
 import exit from "./exit.png";
 import listen from "./listen.png";
 import profile from "./user.png";
+import RoomList from "../RoomList";
+import RoomListListener from "./RoomListListener";
 
-const ListLanding1 = (props) => {
-  const { user } = props;
-  const { socket, setSocket } = useContext(UserContext);
-
+const ListLanding1 = () => {
+  const { user, socket, setSocket } = useContext(UserContext);
+  const [selectedRoom, setSelectedRoom] = useState(null);
   const [open, setOpen] = useState(false);
-  const [memberSocket, setMemberSocket] = useState(null); // Member socket
+  const [memberSocket, setMemberSocket] = useState(null);
   const [requests, setRequests] = useState([]);
   const navigate = useNavigate();
-  const [showChatRoom, setShowChatRoom] = useState(false); // add state variable for chat room
+  const [showChatRoom, setShowChatRoom] = useState(false);
   const [data, setData] = useState({});
-
   const [showMemes, setShowMemes] = useState(false);
   const [showExplore, setShowExplore] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
@@ -49,23 +49,17 @@ const ListLanding1 = (props) => {
     setOpen(false);
   };
 
-  // Handle Accept button click
   const handleAccept = (request) => () => {
     console.log("Accepting request:", request);
 
     const memberSocket = request.socket;
     console.log("Member socket:", memberSocket);
 
-    console.log("User", user);
-
-    // Emit the accept event to the server with the request details
     socket.emit("requestAccepted", request, {
-      // username: user.listenerUsername,
       listener: user,
       socket: socket.id,
     });
 
-    // Store the memberSocket value in the component state
     setMemberSocket(memberSocket);
   };
 
@@ -80,7 +74,6 @@ const ListLanding1 = (props) => {
 
       newSocket.on("connect", () => {
         console.log("Socket.IO connection opened");
-
         newSocket.emit("listenerDetails", user);
         setSocket(newSocket);
       });
@@ -90,19 +83,16 @@ const ListLanding1 = (props) => {
   useEffect(() => {
     if (open && socket !== null) {
       console.log("Listening for requests");
-      // Listen for incoming requests
       socket.on("request", (request) => {
         console.log("Request received:", request);
         setRequests((prevRequests) => [...prevRequests, request]);
       });
 
-      // Listen for updates to the requests set
       socket.on("requestsUpdate", (updatedRequests) => {
         console.log("Updated Requests received:", updatedRequests);
         setRequests(updatedRequests);
       });
 
-      // // Listen for the roomJoined event
       socket.on("roomJoined", (data) => {
         console.log("roomJoined event received:", data.roomName);
         console.log("Data :", data);
@@ -133,12 +123,15 @@ const ListLanding1 = (props) => {
     setShowProfile(true);
   };
 
+  const handleRoomSelect = (room) => {
+    setSelectedRoom(room);
+  };
+
   return (
     <div>
       <div className="flex h-screen">
-        {/* Sidebar */}
         <div className="w-3/12 flex bg-[#E6E6FA]">
-          <div className=" w-3/12 ">
+          <div className="w-3/12">
             <button
               className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 mt-20 ml-2 w-16 h-16 mb-4 shadow-lg hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100"
               onClick={handleOpen}
@@ -188,19 +181,12 @@ const ListLanding1 = (props) => {
               />
             </button>
           </div>
-          <div className="w-9/12"></div>
-        </div>
-        {/* <div className="w-1/4 bg-gray-200 p-4">
-          <div className="mem1_btn">
-            <button onClick={handleOpen}>See Requests</button>
+          <div className="w-9/12">
+            <RoomListListener onRoomSelect={handleRoomSelect} />
           </div>
-          You can add any other elements or components here if needed
-        </div> */}
+        </div>
 
-        {/* Chat area */}
         <div className="w-9/12 bg-gray-100 p-4">
-          {/* Render the content when needed */}
-
           {showChatRoom && data.roomName && (
             <ChatRoom roomName={data.roomName} />
           )}
