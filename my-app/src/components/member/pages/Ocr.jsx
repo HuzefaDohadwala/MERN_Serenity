@@ -68,34 +68,27 @@ const Ocr = () => {
   };
 
   const verifyData = (data) => {
-    const boardIssuedNumberCondition = data["BOARD ISSUED NUMBER"] === "BN-4567";
-    const licenseNumberCondition = data["LICENSE NUMBER"] && data["LICENSE NUMBER"].length === 8;
-    const dateOfInitialIssuanceCondition = new Date(data["DATE OF INITIAL ISSUANCE"]).getFullYear() > 2008;
-
+    const boardIssuedNumberCondition = data["BOARD ISSUED NUMBER"] === "BN-4937";
+    const licenseNumberCondition = data["LICENSE NUMBER"] && data["LICENSE NUMBER"].length === 8; // You mentioned "MD-75639" as the example.
+    // const dateOfInitialIssuanceCondition = new Date(data["DATE OF INITIAL ISSUANCE"]).getFullYear() === 2014; // You mentioned "21-04-2014" as the example.
+  
     // All three conditions must be true for the overall verification to be true
-    return boardIssuedNumberCondition && licenseNumberCondition && dateOfInitialIssuanceCondition;
+    return boardIssuedNumberCondition && licenseNumberCondition;
   };
+  
+  console.log(extractedData);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-        <h1 className="text-2xl font-semibold mb-4">Document Verification</h1>
+        <h1 className="text-xl font-semibold mb-4">Upload an image of your license to practice </h1>
         <input type="file" accept="image/*" onChange={handleImageUpload} className="mb-4" multiple />
         <button
           onClick={() => processImage(currentIndex)}
           className="bg-blue-500 text-white hover-bg-blue-600 py-2 px-4 rounded-md mb-4"
         >
-          Process Image
+          Verify Document
         </button>
-        <div className="data">
-          <h2 className="text-lg font-semibold mt-4">Extracted Data</h2>
-          {Object.keys(extractedData).map((label) => (
-            <div key={label}>
-              <h3 className="text-gray-700 font-semibold">{label}</h3>
-              <p className="text-gray-700">{extractedData[label]}</p>
-            </div>
-          ))}
-        </div>
         <div className="verification">
           {verificationResult === true ? (
             <span style={{ color: 'green' }}>✔</span>
