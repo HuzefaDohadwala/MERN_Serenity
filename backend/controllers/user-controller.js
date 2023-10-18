@@ -100,13 +100,13 @@ const getUser = async (req, res, next) => {
   //log getUser controller called
   console.log("Get user controller called...");
   //log request headers
-  console.log("Request body:");
-  console.log(req.body);
+  // console.log("Request body:");
+  // console.log(req.body);
   //log request data
   console.log("Request data:");
-  console.log(req.data);
+  console.log(req.params.receiverId);
   try {
-    const user = await User.findById(req.data.user._id);
+    const user = await User.findById(req.params.receiverId);
     res.json(user);
     console.log("User found!");
   } catch (error) {

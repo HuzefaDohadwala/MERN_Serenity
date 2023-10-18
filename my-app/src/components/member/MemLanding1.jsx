@@ -23,7 +23,9 @@ const MemLanding1 = () => {
   const [showPopUp, setShowPopUp] = useState(false);
   const [listener, setListener] = useState(null);
   const [roomName, setRoomName] = useState(null);
+  const [selectedRoom, setSelectedRoom] = useState(null);
   const navigate = useNavigate();
+  const [senderNames, setSenderNames] = useState({});
 
   const [info, setInfo] = useState(null);
 
@@ -137,6 +139,14 @@ const MemLanding1 = () => {
       });
     }
   };
+
+  const handleSenderNameUpdate = (senderId, senderName) => {
+    setSenderNames((prevSenderNames) => ({
+      ...prevSenderNames,
+      [senderId]: senderName,
+    }));
+  };
+
   const handleJoinRoomClick = (roomName) => {
     console.log("Join Room button clicked");
     setShowPopUp(false);
@@ -144,11 +154,28 @@ const MemLanding1 = () => {
     socket.emit("roomJoined", { roomName, info });
     console.log("Emitting roomJoined event to server");
     setShowChatRoom(true); // set showChatRoom state to true
+    setShowChatRoom(true);
+    setShowExplore(false);
+    setShowMemes(false);
+    setShowTherapist(false);
+    setShowProfile(false);
   };
 
-  const handleRoomSelect = (roomName) => {
-    console.log("Room  Changed : ", roomName);
-    setRoomName(roomName);
+  // const handleRoomSelect = (room) => {
+  //   console.log("Room selected and changed:", room);
+  //   setSelectedRoom({ ...room, roomName });
+  //   console.log("selectedRoom:", selectedRoom);
+  //   setShowChatRoom(true);
+  // };
+
+  const handleRoomSelect = (room) => {
+    console.log("Room selected and changed:", room);
+    setSelectedRoom(room); // Set selectedRoom to the selected room object
+    setShowChatRoom(true);
+    setShowExplore(false);
+    setShowMemes(false);
+    setShowTherapist(false);
+    setShowProfile(false);
   };
 
   const handleTherapistClick = () => {
@@ -249,11 +276,14 @@ const MemLanding1 = () => {
             </button>
           </div>
           <div className="w-9/12">
-            <RoomList onRoomSelect={handleRoomSelect} />
+            <RoomList onRoomSelect={handleRoomSelect}  />
           </div>
         </div>
         <div className="w-9/12 bg-gray-100 p-4 ">
-          {showChatRoom && roomName && <ChatRoom roomName={roomName} />}
+          {showChatRoom &&
+            selectedRoom && ( // Updated condition
+              <ChatRoom roomName={selectedRoom.roomName} /> // Pass the correct prop
+            )}
           {showTherapist && <MemTherapists />}
           {showMemes && <MemMemes />}
           {showExplore && <MemExplore />}

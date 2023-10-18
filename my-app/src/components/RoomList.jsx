@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../UserContext";
 import { io } from "socket.io-client";
+import axios from "axios";
 
 const RoomList = (props) => {
   const { user, socket } = useContext(UserContext);
@@ -28,10 +29,22 @@ const RoomList = (props) => {
     }
   }, [socket, user]);
 
-  const handleRoomSelect = (room) => {
+  const handleRoomSelect = async (room) => {
     console.log("Room selected:", room);
-    props.onRoomSelect(room);
-    socket.emit("instantJoin", room);
+    const senderId =
+      user.user._id !== room.member ? room.member : room.listener;
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/listener/getListener/${senderId}`
+      );
+      const listener = response.data;
+      const roomName = room.roomname;
+      console.log("Room name:", roomName);
+      props.onRoomSelect({ ...room, roomName });
+      socket.emit("instantJoin", room);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -51,6 +64,33 @@ const RoomList = (props) => {
     });
   }, [rooms, socket]);
 
+  const [senderName, setSenderName] = useState("");
+
+  useEffect(() => {
+    const fetchSenderName = async (senderId) => {
+      console.log("Fetching sender name for sender ID:", senderId);
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/listener/getListener/${senderId}`
+        );
+        const listener = response.data;
+        const senderName = listener.listenerUsername;
+        setSenderName((prevSenderNames) => ({
+          ...prevSenderNames,
+          [senderId]: senderName,
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    rooms.forEach((room) => {
+      const senderId =
+        user.user._id !== room.member ? room.member : room.listener;
+      fetchSenderName(senderId);
+    });
+  }, [rooms, user.user._id]);
+
   return (
     <div>
       <ul>
@@ -58,11 +98,11 @@ const RoomList = (props) => {
           // Determine the sender ID based on whether the logged-in user is the member or listener of the room
           const senderId =
             user.user._id !== room.member ? room.member : room.listener;
-          // Render the room details with the sender ID
+          // Render the room details with the sender name
           return (
             <li key={room._id}>
               <button onClick={() => handleRoomSelect(room)}>
-                Sender ID: {senderId}
+                Sender Name: {senderName[senderId]}
               </button>
             </li>
           );

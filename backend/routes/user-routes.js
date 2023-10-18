@@ -15,7 +15,7 @@ router.post("/signup", signup);
 
 router.post("/login", login);
 
-router.get("/getUser", getUser);
+router.get("/getUser/:receiverId", getUser);
 
 router.get(`/events`, getEvents);
 

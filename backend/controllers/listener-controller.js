@@ -39,17 +39,6 @@ const listenerSignup = async (req, res) => {
   }
 };
 
-const getListener = async (req, res) => {
-  try {
-    const listener = await Listener.findById(req.params.id);
-    if (!listener) {
-      return res.status(404).json({ msg: "Listener not found" });
-    }
-    res.status(200).json(listener);
-  } catch (error) {
-    res.status(500).json({ msg: error.message });
-  }
-};
 const listenerLogin = async (req, res) => {
   //log login controller called
   console.log("Login controller called...");
@@ -87,6 +76,24 @@ const listenerLogin = async (req, res) => {
     // req.context.token = token;
 
     res.status(200).json({ msg: "Login successful", user });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+
+// make a getlistener function
+const getListener = async (req, res) => {
+  try {
+    const listener = await Listener.findById(req.params.senderId);
+    console.log("Get listener controller called...");
+    // console.log("request body:", req.body);
+    console.log("request params:", req.params.senderId);
+    if (!listener) {
+      return res.status(404).json({ msg: "Listener not found" });
+    }
+    // console.log("Listener found");
+    // console.log(listener);
+    res.status(200).json(listener);
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }

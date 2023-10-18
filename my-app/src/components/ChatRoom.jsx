@@ -6,6 +6,7 @@ import { UserContext } from "../../src/UserContext";
 import send from "./send.png";
 
 const ChatRoom = ({ roomName }) => {
+  console.log("ChatRoom.jsx");
   console.log("Room name:", roomName);
   const { user } = useContext(UserContext);
   const { socket } = useContext(UserContext);
