@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../UserContext";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { Typography } from "@mui/material";
 
 const ListLogin = () => {
   const navigate = useNavigate();
@@ -47,9 +49,9 @@ const ListLogin = () => {
         onSubmit={handleSubmit}
         className=" h-90 flex my-40 mx-80 absolute bg-white bg-opacity-20 p-4 rounded-lg shadow-2xl backdrop-blur-md"
       >
-        <div className="w-1/3 pt-20 content-center bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-lg">
-          <h2 className="text-5xl font-bold">Welcome !!</h2>
-          <h2 className="text-5xl font-bold">Listener</h2>
+        <div className="w-1/3 pt-24 content-center bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-lg">
+          <h2 className="text-4xl font-bold">Welcome !!</h2>
+          <h2 className="text-4xl font-bold">Listener</h2>
         </div>
         <div className="w-2/3 p-4">
           <input
@@ -82,6 +84,12 @@ const ListLogin = () => {
             )}
           </button>
           {error && <p className="text-red-500 text-sm">{error}</p>}
+          <Typography variant="p">
+            Don't have an account?{" "}
+            <Link to="/listener/signup" style={{ color: "#d96a94" }}>
+              SignUp
+            </Link>
+          </Typography>
         </div>
       </form>
     </div>
