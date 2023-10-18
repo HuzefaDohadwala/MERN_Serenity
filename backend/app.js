@@ -23,6 +23,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(cookieParser());
 // Add this middleware to set the Access-Control-Allow-Origin header
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -33,6 +34,7 @@ app.use(express.json());
 app.use("/", router);
 app.use("/listener", require("./routes/listener-routes"));
 app.use("/api", require("./routes/api-routes"));
+app.use("/therapist", require("./routes/therapist-routes"));
 
 // create a server
 const server = http.createServer(app);

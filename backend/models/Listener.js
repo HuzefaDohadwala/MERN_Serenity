@@ -19,6 +19,11 @@ const listenerSchema = new Schema({
   },
   listenerPassword: { type: String, required: true, minlength: 8 },
   dateJoined: { type: Date, default: Date.now },
+  phoneNumber: { type: String, required: true },
+  // name: { type: String, required: true },
+  // country: { type: String, required: true },
+  // state: { type: String, required: true },
+  // document: { type: String, required: true },
 });
 
 module.exports = mongoose.model("Listener", listenerSchema);

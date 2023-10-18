@@ -1,14 +1,35 @@
-import React from "react";
-import explore from "./Explore.json";
+import React, { useState, useEffect, useContext } from "react";
 import "./Explore.css";
-import { useState } from "react";
+import axios from "axios";
+import { UserContext } from "../../../UserContext";
 
 const MemExplore = () => {
+  const [events, setEvents] = useState([]);
+  const { user } = useContext(UserContext);
+  // console.log(user);
   const [formData, setFormData] = useState({
     time: "",
-    username: "",
-    email: "",
+    username: user.user.username,
+    email: user.user.email,
   });
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/events");
+        const data = response.data.map((event) => ({
+          ...event,
+          date: event.date.split("T")[0],
+        }));
+        setEvents(data);
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,11 +38,14 @@ const MemExplore = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const currentTime = new Date().toISOString().slice(0, 19).replace("T", " ");
+    setFormData({ ...formData, time: currentTime });
+    console.log(formData);
     fetch("https://api.apispreadsheets.com/data/DPASwoFmLyBXwDUW/", {
       method: "POST",
       body: JSON.stringify({
         data: {
-          time: formData.time,
+          time: currentTime,
           email: formData.email,
           username: formData.username,
         },
@@ -41,9 +65,9 @@ const MemExplore = () => {
 
   return (
     <div style={{ height: "100%", overflowY: "auto" }}>
-      {explore.map((event, index) => (
+      {events.map((event) => (
         <div
-          key={index}
+          key={event._id}
           className="bg-[#7e506c] p-4 rounded-lg shadow-lg m-4 max-w-screen flex"
         >
           <div className="flex-shrink-0">

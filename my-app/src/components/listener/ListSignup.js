@@ -19,9 +19,11 @@ const ListenerSignup = () => {
     }));
   };
 
+  
   // post details on /listener/signup route
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(inputs);
     try {
       const res = await axios.post(
         "http://localhost:5000/listener/signup",
@@ -44,7 +46,7 @@ const ListenerSignup = () => {
         onSubmit={handleSubmit}
         className=" h-90 flex  my-24 mx-40 absolute bg-white bg-opacity-20 p-4 rounded-lg shadow-2xl backdrop-blur-md"
       >
-        <div className="w-1/3 pt-36 content-center bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-lg">
+        <div className="w-1/3 pt-28 content-center bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-lg">
           <h2 className="text-5xl font-bold">Welcome !!</h2>
           <h2 className="text-5xl font-bold">Listener</h2>
         </div>

@@ -1,10 +1,14 @@
 const bcrypt = require("bcryptjs");
 const Listener = require("../models/Listener");
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
+const SECRET_KEY = "mysecretkey";
 
 const listenerSignup = async (req, res) => {
   try {
-    const { listenerUsername, listenerPassword, email } = req.body;
-    if (!listenerUsername || !listenerPassword || !email) {
+    const { listenerUsername, listenerPassword, email, phoneNumber } = req.body; // add phoneNumber to the destructuring assignment
+    if (!listenerUsername || !listenerPassword || !email || !phoneNumber) {
+      // check if phoneNumber is present
       return res.status(400).json({ msg: "Invalid request body" });
     }
     const user = await Listener.findOne({ listenerUsername, email });
@@ -18,6 +22,7 @@ const listenerSignup = async (req, res) => {
       listenerUsername,
       listenerPassword,
       email,
+      phoneNumber,
     });
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(listenerPassword, salt);
@@ -45,7 +50,6 @@ const getListener = async (req, res) => {
     res.status(500).json({ msg: error.message });
   }
 };
-
 const listenerLogin = async (req, res) => {
   //log login controller called
   console.log("Login controller called...");
@@ -67,10 +71,47 @@ const listenerLogin = async (req, res) => {
     }
     //log login successful
     console.log("Login successful!");
+
+    // Generate JWT
+    const token = jwt.sign({ userId: user._id }, SECRET_KEY, {
+      expiresIn: "1h",
+    });
+
+    console.log("JWT generated");
+    console.log(token);
+
+    // Set JWT as HTTP-only cookie
+    res.cookie("jwt", token, { httpOnly: true });
+
+    // Store token in context
+    // req.context.token = token;
+
     res.status(200).json({ msg: "Login successful", user });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
 };
 
-module.exports = { listenerSignup, listenerLogin, getListener };
+const verifyToken = (req, res, next) => {
+  // Get token from authorization header
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ msg: "Unauthorized" });
+  }
+
+  try {
+    // Verify token
+    const decoded = jwt.verify(token, SECRET_KEY);
+
+    // Add decoded payload to request object
+    req.user = decoded;
+
+    next();
+  } catch (error) {
+    res.status(401).json({ msg: "Invalid token" });
+  }
+};
+
+module.exports = { listenerSignup, listenerLogin, getListener, verifyToken };

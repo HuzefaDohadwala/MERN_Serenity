@@ -22,6 +22,9 @@ import ListProfile from "./components/listener/ListProfile";
 import DashBoard from "./components/member/DashBoard";
 import MemLanding1 from "./components/member/MemLanding1";
 import Ocr from "./components/member/pages/Ocr";
+import TherapistSignup from "./components/therapist/TherapistSignup";
+import TherapistLogin from "./components/therapist/TherapistLogin";
+import TherapistLanding from "./components/therapist/TherapistLanding";
 
 function App() {
   return (
@@ -49,9 +52,19 @@ function App() {
         <Route path="/listener/memes" element={<ListMemes />} />
         <Route path="/listener/profile" element={<ListProfile />} />
         <Route path="/ocr" element={<Ocr />} />
+        <Route path="/member/Memes" element={<MemMemes />} />
+        <Route path="/member/Therapists" element={<MemTherapists />} />
+        <Route path="/member/Explore" element={<MemExplore />} />
+        <Route path="/member/ocr" element={<Ocr />} />
+
+        <Route path="/therapist/signup" element={<TherapistSignup />} />
+        <Route path="/therapist/login" element={<TherapistLogin />} />
+        <Route path="/therapist/landing" element={<TherapistLanding />} />
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+// this is my app.js : after the member logs in, if he tries to access any of the frontend routes, I want to verify the token and keep routes protected, how do I do that?\

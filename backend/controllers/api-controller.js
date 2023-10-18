@@ -1,4 +1,5 @@
 const Message = require("../models/Message");
+const Event = require("../models/Event");
 
 const getMessages = async (req, res) => {
   const roomName = req.params.roomName;

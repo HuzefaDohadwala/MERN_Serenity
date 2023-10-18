@@ -3,6 +3,7 @@ const User = require("../models/User");
 // require bcrypt
 const bcrypt = require("bcryptjs");
 const Listener = require("../models/Listener");
+const Event = require("../models/Event");
 
 // create a singup controller
 const signup = async (req, res) => {
@@ -113,6 +114,18 @@ const getUser = async (req, res, next) => {
   }
 };
 
+const getEvents = async (req, res) => {
+  try {
+    const events = await Event.find();
+    console.log("Events:", events);
+    res.status(200).json(events);
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    res.status(500).json({ error: "Error fetching events" });
+  }
+};
+
 exports.signup = signup; // Export the signup controller
 exports.login = login; // Export the login controller
 exports.getUser = getUser; // Export the getUser controller
+exports.getEvents = getEvents; // Export the getEvents controller

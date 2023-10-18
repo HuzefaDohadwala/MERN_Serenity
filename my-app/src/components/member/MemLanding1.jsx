@@ -168,6 +168,7 @@ const MemLanding1 = () => {
   };
 
   const handleExploreClick = () => {
+    console.log("Explore clicked");
     setShowTherapist(false);
     setShowMemes(false);
     setShowExplore(true);
