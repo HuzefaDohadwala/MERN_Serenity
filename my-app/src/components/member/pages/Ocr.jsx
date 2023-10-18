@@ -6,6 +6,7 @@ const Ocr = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [recognizedText, setRecognizedText] = useState('');
   const [extractedData, setExtractedData] = useState({});
+  const [verificationResult, setVerificationResult] = useState(null);
 
   const handleImageUpload = (event) => {
     const uploadedImages = Array.from(event.target.files);
@@ -13,6 +14,7 @@ const Ocr = () => {
     setCurrentIndex(0);
     setRecognizedText('');
     setExtractedData({});
+    setVerificationResult(null);
   };
 
   const processImage = async (index) => {
@@ -31,31 +33,31 @@ const Ocr = () => {
     const extractedData = extractDataLabels(data.text);
     setExtractedData(extractedData);
 
+    const result = verifyData(extractedData);
+    setVerificationResult(result);
+
+    if (result) {
+      console.log("Verification successful!");
+    } else {
+      console.log("Verification failed.");
+    }
+
     await worker.terminate();
   };
 
   const extractDataLabels = (text) => {
+    // Define labels and corresponding regular expressions
     const labels = [
-      "Name and Credentials",
-      "License Information",
-      "Professional Certification",
-      "Professional Licensing Details",
-      "Credentials and Licensing",
-      "License Verification",
-      "Professional Qualifications",
-      "Medical License",
-      "Doctor's License",
-      "License and Contact Information",
-      "Authorized Practitioner Information",
-      "Medical Practitioner Credentials",
-      "Physician License Data",
-      "Licensed Medical Professional",
+      "DATE OF INITIAL ISSUANCE",
+      "LICENSE NUMBER",
+      "BOARD ISSUED NUMBER",
     ];
 
     const data = {};
 
     labels.forEach((label) => {
-      const labelRegex = new RegExp(`${label}:(.*?)($|(?=${labels.join('|')}))`, 'is');
+      // Create a regex pattern that matches the label and captures the relevant content
+      const labelRegex = new RegExp(`${label}:[\\s]*([\\w-]+)`, 'is');
       const match = text.match(labelRegex);
       if (match) {
         data[label] = match[1].trim();
@@ -65,12 +67,13 @@ const Ocr = () => {
     return data;
   };
 
-  const nextImage = () => {
-    const nextIndex = currentIndex + 1;
-    if (nextIndex < images.length) {
-      setCurrentIndex(nextIndex);
-      processImage(nextIndex);
-    }
+  const verifyData = (data) => {
+    const boardIssuedNumberCondition = data["BOARD ISSUED NUMBER"] === "BN-4567";
+    const licenseNumberCondition = data["LICENSE NUMBER"] && data["LICENSE NUMBER"].length === 8;
+    const dateOfInitialIssuanceCondition = new Date(data["DATE OF INITIAL ISSUANCE"]).getFullYear() > 2008;
+
+    // All three conditions must be true for the overall verification to be true
+    return boardIssuedNumberCondition && licenseNumberCondition && dateOfInitialIssuanceCondition;
   };
 
   return (
@@ -80,14 +83,10 @@ const Ocr = () => {
         <input type="file" accept="image/*" onChange={handleImageUpload} className="mb-4" multiple />
         <button
           onClick={() => processImage(currentIndex)}
-          className="bg-blue-500 text-white hover:bg-blue-600 py-2 px-4 rounded-md mb-4"
+          className="bg-blue-500 text-white hover-bg-blue-600 py-2 px-4 rounded-md mb-4"
         >
           Process Image
         </button>
-        <div className="results">
-          <h2 className="text-lg font-semibold">Recognized Text</h2>
-          <p className="text-gray-700">{recognizedText}</p>
-        </div>
         <div className="data">
           <h2 className="text-lg font-semibold mt-4">Extracted Data</h2>
           {Object.keys(extractedData).map((label) => (
@@ -97,12 +96,13 @@ const Ocr = () => {
             </div>
           ))}
         </div>
-        <button
-          onClick={nextImage}
-          className="bg-blue-500 text-white hover:bg-blue-600 py-2 px-4 rounded-md mt-4"
-        >
-          Next Image
-        </button>
+        <div className="verification">
+          {verificationResult === true ? (
+            <span style={{ color: 'green' }}>✔</span>
+          ) : verificationResult === false ? (
+            <span style={{ color: 'red' }}>✘</span>
+          ) : null}
+        </div>
       </div>
     </div>
   );

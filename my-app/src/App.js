@@ -22,9 +22,9 @@ import ListProfile from "./components/listener/ListProfile";
 import DashBoard from "./components/member/DashBoard";
 import MemLanding1 from "./components/member/MemLanding1";
 import Ocr from "./components/member/pages/Ocr";
-import TherapistSignup from "./components/therapist/TherapistSignup";
-import TherapistLogin from "./components/therapist/TherapistLogin";
-import TherapistLanding from "./components/therapist/TherapistLanding";
+// import TherapistSignup from "./components/therapist/TherapistSignup";
+// import TherapistLogin from "./components/therapist/TherapistLogin";
+// import TherapistLanding from "./components/therapist/TherapistLanding";
 
 function App() {
   return (
@@ -57,9 +57,9 @@ function App() {
         <Route path="/member/Explore" element={<MemExplore />} />
         <Route path="/member/ocr" element={<Ocr />} />
 
-        <Route path="/therapist/signup" element={<TherapistSignup />} />
+        {/* <Route path="/therapist/signup" element={<TherapistSignup />} />
         <Route path="/therapist/login" element={<TherapistLogin />} />
-        <Route path="/therapist/landing" element={<TherapistLanding />} />
+        <Route path="/therapist/landing" element={<TherapistLanding />} /> */}
       </Routes>
     </div>
   );
