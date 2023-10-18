@@ -58,7 +58,8 @@ const ChatRoom = ({ roomName }) => {
       <div className="bg-white rounded-lg shadow-lg">
         <div className="px-4 py-2 bg-[#7e506c] rounded-t-lg">
           <h2 className="text-lg font-bold text-white">
-            Chat Room: {messages.length > 0 ? messages[0].receiver : ""}
+            {/* Chat Room: {messages.length > 0 ? messages[0].receiver : ""} */}
+            Chat
           </h2>
         </div>
         <div className="p-4 bg-[#e6e6fa]">
