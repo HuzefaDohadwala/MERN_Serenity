@@ -178,36 +178,37 @@ const MemLanding1 = () => {
   return (
     <div>
       <div className="flex h-screen ">
-        <div className="w-3/12 flex ">
+        <div className="w-3/12 flex bg-[#E6E6FA]">
           <div className=" w-3/12 ">
-            <button
-              className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 mt-20 ml-2 w-16 h-16 mb-4"
+          <button
+              className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 mt-20 ml-2 w-16 h-16 mb-4 shadow-lg hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100"
               onClick={handleFindListener}
             >
               <img src={listen} alt="logo" className="about2_icon about2_oppIcon" />
             </button>
+
             <button
-              className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4"
+              className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4 shadow-2xl hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100"
               onClick={handleTherapistClick}
             >
               <img src={cosultauion} alt="therapist" className="about2_icon about2_oppIcon" />
             </button>
             <button
-              className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4"
+              className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4 shadow-lg hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100"
               onClick={handleExploreClick}
             >
               <img src={loupe} alt="explore" className="about2_icon about2_oppIcon" />
             </button>
             <button
-              className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4"
+              className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4 shadow-lg hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100"
               onClick={handleMemesClick}
             >
               <img src={happy} alt="meme" className="about2_icon about2_oppIcon" />
             </button>
-            <button className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4">
+            <button className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4 shadow-lg hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100">
               <img src={profile} alt="profile" className="about2_icon about2_oppIcon" />
             </button>
-            <button className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4">
+            <button className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4 shadow-lg hover:shadow-2xl hover:scale-110 active:bg-opacity-80 active:scale-100">
               <img src={exit} alt="meme" className="about2_icon about2_oppIcon" />
             </button>
           </div>

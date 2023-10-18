@@ -12,8 +12,8 @@ const MemExplore = () => {
         </div>
         <div className="ml-4 flex-grow">
           <h2 className="text-2xl font-semibold text-white">{event.name}</h2>
-          <p className="text-gray-400 text-left text-white">{event.date}</p>
-          <p className="text-gray-400 text-left text-white">{event.location}</p>
+          <p className=" text-left text-white">{event.date}</p>
+          <p className=" text-left text-white">{event.location}</p>
           <div className="mt-4 text-right">
             <button className="bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300 hover:bg-gradient-to-r hover:from-[#b8a8c4] hover:to-[#d96a94] transform hover:scale-105">
               Register
