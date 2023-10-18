@@ -7,7 +7,7 @@ const MemTherapists = () => {
     <div>
       {therapistsList.map((therapist) => (
         <div
-          className="TC_container w-1/2 bg-gray-200 rounded-lg shadow-lg p-4 mx-96 my-4"
+          className="TC_container w-2/3 bg-gray-200 rounded-lg shadow-lg p-4 mx-64 my-4"
           key={therapist.id}
         >
           <div className="TherapistCard">

@@ -18,15 +18,12 @@ import profile from "./user.png";
 const MemLanding1 = () => {
   const { user, socket, setSocket } = useContext(UserContext);
 
-
- 
   const [isReady, setIsReady] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const [listener, setListener] = useState(null);
   const [roomName, setRoomName] = useState(null);
   const navigate = useNavigate();
 
- 
   const [info, setInfo] = useState(null);
 
   const [showChatRoom, setShowChatRoom] = useState(false);
@@ -65,7 +62,6 @@ const MemLanding1 = () => {
       }
     }
   }, [isReady]);
-
 
   // handle joinRoom event
   useEffect(() => {
@@ -116,7 +112,6 @@ const MemLanding1 = () => {
         console.log("Socket.IO connection opened");
         console.log("Requesting a listener for user:", user.user.username);
         newSocket.emit("memberDetails", user);
-  
 
         // Emit the request event to the server with the member details and a message
         newSocket.emit("request", {
@@ -184,31 +179,55 @@ const MemLanding1 = () => {
               className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 mt-20 ml-2 w-16 h-16 mb-4"
               onClick={handleFindListener}
             >
-              <img src={listen} alt="logo" className="about2_icon about2_oppIcon" />
+              <img
+                src={listen}
+                alt="logo"
+                className="about2_icon about2_oppIcon"
+              />
             </button>
             <button
               className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4"
               onClick={handleTherapistClick}
             >
-              <img src={cosultauion} alt="therapist" className="about2_icon about2_oppIcon" />
+              <img
+                src={cosultauion}
+                alt="therapist"
+                className="about2_icon about2_oppIcon"
+              />
             </button>
             <button
               className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4"
               onClick={handleExploreClick}
             >
-              <img src={loupe} alt="explore" className="about2_icon about2_oppIcon" />
+              <img
+                src={loupe}
+                alt="explore"
+                className="about2_icon about2_oppIcon"
+              />
             </button>
             <button
               className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4"
               onClick={handleMemesClick}
             >
-              <img src={happy} alt="meme" className="about2_icon about2_oppIcon" />
+              <img
+                src={happy}
+                alt="meme"
+                className="about2_icon about2_oppIcon"
+              />
             </button>
             <button className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4">
-              <img src={profile} alt="profile" className="about2_icon about2_oppIcon" />
+              <img
+                src={profile}
+                alt="profile"
+                className="about2_icon about2_oppIcon"
+              />
             </button>
             <button className="relative bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] rounded-full p-5 ml-2 w-16 h-16 mb-4">
-              <img src={exit} alt="meme" className="about2_icon about2_oppIcon" />
+              <img
+                src={exit}
+                alt="meme"
+                className="about2_icon about2_oppIcon"
+              />
             </button>
           </div>
           <div className="w-9/12">
@@ -232,7 +251,9 @@ const MemLanding1 = () => {
               </div>
               <div className="mem1Btn_area">
                 <div className="mem1_btn">
-                  <button onClick={() => setShowChatRoom(!showChatRoom)}>Text Listener</button>
+                  <button onClick={() => setShowChatRoom(!showChatRoom)}>
+                    Text Listener
+                  </button>
                 </div>
               </div>
             </div>
@@ -240,12 +261,24 @@ const MemLanding1 = () => {
         </div>
       </div>
       {showPopUp && (
-        <div className="pop-up">
-          <h2>Chat with {listener.listenerUsername}</h2>
-          <p>Do you want to join the chat room?</p>
-          <div className="pop-up-buttons">
-            <button onClick={() => setShowPopUp(false)}>Cancel</button>
-            <button onClick={() => handleJoinRoomClick(roomName)}>Join Room</button>
+        <div className="popup-main">
+          <div className="pop-up pop-up absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-md shadow-lg">
+            <h2>Chat with {listener.listenerUsername}</h2>
+            <p>Do you want to join the chat room?</p>
+            <div className="pop-up-buttons">
+              <button
+                className="cancelBtn_ml p-2 mx-1"
+                onClick={() => setShowPopUp(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="joinBtn_ml p-2 mx-1"
+                onClick={() => handleJoinRoomClick(roomName)}
+              >
+                Join Room
+              </button>
+            </div>
           </div>
         </div>
       )}
