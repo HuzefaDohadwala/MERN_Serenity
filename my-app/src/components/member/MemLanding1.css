@@ -85,3 +85,8 @@
 .joinBtn_ml:hover {
   background-color: #7e506c;
 }
+
+.ml_icon {
+  height: 45px;
+  width: auto;
+}

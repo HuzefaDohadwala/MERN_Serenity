@@ -9,6 +9,7 @@ import MemExplore from "./pages/MemExplore";
 import MemMemes from "./pages/MemMemes";
 import MemTherapists from "./pages/MemTherapists";
 import MemProfile from "./pages/MemProfile";
+import communication from "./Communication.png";
 import cosultauion from "./consultation.png";
 import loupe from "./loupe.png";
 import happy from "./happy.png";
@@ -221,9 +222,9 @@ const MemLanding1 = () => {
               onClick={handleFindListener}
             >
               <img
-                src={listen}
+                src={communication}
                 alt="logo"
-                className="about2_icon about2_oppIcon"
+                className="about2_icon about2_oppIcon ml_icon"
               />
             </button>
 

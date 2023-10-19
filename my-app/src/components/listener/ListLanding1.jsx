@@ -18,6 +18,7 @@ import ChatRoom from "../ChatRoom";
 import ListExplore from "./ListExplore";
 import ListMemes from "./ListMemes";
 import ListProfile from "./ListProfile";
+import communication from "./Communication.png";
 import cosultauion from "./consultation.png";
 import loupe from "./loupe.png";
 import happy from "./happy.png";
@@ -137,9 +138,9 @@ const ListLanding1 = () => {
               onClick={handleOpen}
             >
               <img
-                src={listen}
+                src={communication}
                 alt="logo"
-                className="about2_icon about2_oppIcon"
+                className="about2_icon about2_oppIcon ml_icon"
               />
             </button>
 

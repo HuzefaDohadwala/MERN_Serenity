@@ -117,8 +117,10 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="cb_container">
-      <div className="chatbot-container">
+    <div className="cb_container pl-40 bg-[#E6E6FA]">
+      <div className="absolute bg-purple-300 rounded-full w-96 h-96 top-1 left-1 transform -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bg-purple-300 rounded-full w-96 h-96 bottom-1 right-1 transform -translate-x-1 -translate-y-1.5"></div>
+      <div className="chatbot-container absolute bg-white bg-opacity-20 p-4 rounded-lg shadow-2xl backdrop-blur-md ">
         <div className="chatbot-messages">
           {messages.map((message, index) => (
             <div
