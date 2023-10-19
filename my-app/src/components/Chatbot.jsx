@@ -77,6 +77,25 @@ const Chatbot = () => {
           "To get started on the website, follow these steps:\n1. Signup and create an account as a member.\n2. Log in using your credentials.\n3. Send a request to a listener you'd like to talk to.\n4. Once accepted, start your conversation with them.",
         ],
       },
+      // {
+      //   tag: "listeners",
+      //   patterns: ["Who are the listeners?"],
+      //   response: [
+      //     "The listeners are psychology students and are trained to discuss problems.",
+      //   ],
+      // },
+      // {
+      //   tag: "therapist",
+      //   patterns: [
+      //     "will it cost me to get an appointment with therapist?",
+      //     "Are the therapist sessions free?",
+      //   ],
+      //   response: [
+      //     "The first therapy session is completely free. ",
+      //     "The first therapy session is completely free.",
+      //     "Yes, all therapist are actively practicing",
+      //   ],
+      // },
     ];
 
     for (const intent of intents) {

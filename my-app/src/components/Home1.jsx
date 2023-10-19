@@ -60,6 +60,9 @@ const Home1 = () => {
         <button className="customButton" onClick={onButtonClick}>
           <Link to="/login">Find a listener</Link>
         </button>
+        <button className="customButton w-44">
+          <Link to="/chatbot">BetterHelpAI</Link>
+        </button>
       </div>
     </>
   );
