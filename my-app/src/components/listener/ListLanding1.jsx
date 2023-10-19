@@ -181,7 +181,7 @@ const ListLanding1 = () => {
               />
             </button>
           </div>
-          <div className="w-9/12">
+          <div className="w-9/12 pt-20">
             <RoomListListener onRoomSelect={handleRoomSelect} />
           </div>
         </div>

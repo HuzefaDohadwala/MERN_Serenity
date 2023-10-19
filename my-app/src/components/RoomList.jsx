@@ -148,7 +148,10 @@ const RoomList = (props) => {
           // Render the room details with the sender name
           return (
             <li key={room._id}>
-              <button onClick={() => handleRoomSelect(room)}>
+              <button
+                className="p-4 w-5/6 h-24 bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] mb-4 rounded-lg"
+                onClick={() => handleRoomSelect(room)}
+              >
                 Sender Name: {senderName[senderId]}
               </button>
             </li>

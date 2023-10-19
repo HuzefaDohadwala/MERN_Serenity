@@ -7,31 +7,76 @@ const MemExplore = () => {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const { user } = useContext(UserContext);
-  // console.log(user);
+  const [isFormVisible, setFormVisible] = useState(false);
   const [formData, setFormData] = useState({
     time: "",
     username: user.user.username,
     email: user.user.email,
-    company: selectedEvent ? selectedEvent.company : "",
-    topic: selectedEvent ? selectedEvent.topic : "",
+    company: "",
+    topic: "",
   });
 
   const handleEventSelect = (event) => {
-    setSelectedEvent(event);
-  
+    setSelectedEvent(event); // Set the selected event
+
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [event._id]: {
-        time: "",
-        username: user.user.username,
-        email: user.user.email,
-        company: event.company,
-        topic: event.topic,
-      },
+      company: event.company,
+      topic: event.topic,
     }));
   };
-  
-  
+
+  // Helper function to get the API endpoint based on event properties
+  const getApiEndpoint = (event) => {
+    if (event) {
+      if (event.company === "MindfulWellness") {
+        return "https://api.apispreadsheets.com/data/DPASwoFmLyBXwDUW/";
+      } else if (event.company === "SereneMinds, Inc.") {
+        return "https://api.apispreadsheets.com/data/3K3kl7bqF8j1WHWN/";
+      }
+      // Add more conditions for other events
+    }
+    return null;
+  };
+
+  // ...
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const currentTime = new Date().toISOString().slice(0, 19).replace("T", " ");
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      time: currentTime,
+    }));
+
+    const apiEndpoint = getApiEndpoint(selectedEvent);
+
+    if (apiEndpoint) {
+      fetch(apiEndpoint, {
+        method: "POST",
+        body: JSON.stringify({
+          data: {
+            time: currentTime,
+            email: formData.email,
+            username: formData.username,
+          },
+        }),
+      })
+        .then((res) => {
+          if (res.status === 201) {
+            // SUCCESS
+          } else {
+            // ERROR
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      console.error("No API endpoint found for the selected event.");
+    }
+  };
+
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -41,7 +86,6 @@ const MemExplore = () => {
           date: event.date.split("T")[0],
         }));
         setEvents(data);
-        console.log(data);
       } catch (error) {
         console.error(error);
       }
@@ -60,36 +104,6 @@ const MemExplore = () => {
       },
     }));
   };
-  
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const currentTime = new Date().toISOString().slice(0, 19).replace("T", " ");
-    setFormData({ ...formData, time: currentTime });
-    console.log(formData);
-    fetch("https://api.apispreadsheets.com/data/DPASwoFmLyBXwDUW/", {
-      method: "POST",
-      body: JSON.stringify({
-        data: {
-          time: currentTime,
-          email: formData.email,
-          username: formData.username,
-          company: formData.company,
-          topic: formData.topic,
-        },
-      }),
-    })
-      .then((res) => {
-        if (res.status === 201) {
-          // SUCCESS
-        } else {
-          // ERROR
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
 
   return (
     <div style={{ height: "100%", overflowY: "auto" }}>
@@ -101,74 +115,69 @@ const MemExplore = () => {
         >
           <div className="flex-shrink-0 pt-8">
             <img
-              src='https://plus.unsplash.com/premium_photo-1687777667433-601b1449f2a3?auto=format&fit=crop&q=80&w=1374&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+              src="https://plus.unsplash.com/premium_photo-1687777667433-601b1449f2a3?auto=format&fit=crop&q=80&w=1374&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Card Image"
               className="h-24 w-24 rounded-full"
             />
           </div>
           <div className="ml-4 flex-grow">
             <h2 className="text-2xl font-bold text-white">{event.company}</h2>
-            <p className=" text-left font-semibold text-white pt-4">{event.topic}</p>
+            <p className=" text-left font-semibold text-white pt-4">
+              {event.topic}
+            </p>
             <p className=" text-left font-semibold text-white">{event.date}</p>
-            <p className=" text-left font-semibold text-white">{event.location}</p>
+            <p className=" text-left font-semibold text-white">
+              {event.location}
+            </p>
             <div className="mt-4 text-right">
               <div>
-                <h2>User Form</h2>
-                <form onSubmit={handleSubmit}>
-                  <div>
-                    <label htmlFor="time">Time:</label>
-                    <input
-                      type="text"
-                      id="time"
-                      name="time"
-                      value={formData.time}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="username">Username:</label>
-                    <input
-                      type="text"
-                      id="username"
-                      name="username"
-                      value={formData.username}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div>
-                    <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData[event._id]?.company || ""}
-                    onChange={(e) => handleChange(e, event._id)}
-                    disabled
-                  />
-                  </div>
-                  <div>
-                  <input
-                    type="text"
-                    id="topic"
-                    name="topic"
-                    value={formData[event._id]?.topic || ""}
-                    onChange={(e) => handleChange(e, event._id)}
-                    disabled
-                  />
-                  </div>
-                  <div>
-                    <button type="submit" className="bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300 hover:bg-gradient-to-r hover:from-[#b8a8c4] hover:to-[#d96a94] transform hover:scale-105">Register</button>
-                  </div>
-                </form>
+                {isFormVisible ? (
+                  <form onSubmit={handleSubmit}>
+                    <div>
+                      <label htmlFor="time">Time:</label>
+                      <input
+                        type="text"
+                        id="time"
+                        name="time"
+                        value={formData.time}
+                        onChange={(e) =>
+                          setFormData({ ...formData, time: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="username">Username:</label>
+                      <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        value={formData.username}
+                        onChange={(e) =>
+                          setFormData({ ...formData, username: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email">Email:</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={(e) =>
+                          setFormData({ ...formData, email: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div></div>
+                  </form>
+                ) : null}
+                <button
+                  type="submit"
+                  className="bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300 hover:bg-gradient-to-r hover:from-[#b8a8c4] hover:to-[#d96a94] transform hover:scale-105"
+                >
+                  Register
+                </button>
               </div>
             </div>
           </div>

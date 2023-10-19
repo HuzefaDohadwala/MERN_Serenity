@@ -275,8 +275,8 @@ const MemLanding1 = () => {
               />
             </button>
           </div>
-          <div className="w-9/12">
-            <RoomList onRoomSelect={handleRoomSelect}  />
+          <div className="w-9/12 pt-20">
+            <RoomList onRoomSelect={handleRoomSelect} />
           </div>
         </div>
         <div className="w-9/12 bg-gray-100 p-4 ">

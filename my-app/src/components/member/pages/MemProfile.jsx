@@ -50,7 +50,7 @@ const MemProfile = () => {
               id="personalInputs"
             >
               <div className="flex flex-col rounded-lg gap-0.5 w-64 px-3 py-1.5 rounded-sm border inputs cursor-not-allowed bg-gray-100 focus-within:border-primary-blue">
-                <label className="text-xs text-gray-500">First Name</label>
+                <label className="text-xs text-gray-500">Username</label>
                 <input
                   type="text"
                   name="firstName"
