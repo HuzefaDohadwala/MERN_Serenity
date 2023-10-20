@@ -6,8 +6,8 @@ import { UserContext } from "../../../UserContext";
 const MemExplore = () => {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isBrowseClicked, setBrowseClicked] = useState(false);
   const { user } = useContext(UserContext);
-  const [isFormVisible, setFormVisible] = useState(false);
   const [formData, setFormData] = useState({
     time: "",
     username: user.user.username,
@@ -39,8 +39,6 @@ const MemExplore = () => {
     return null;
   };
 
-  // ...
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const currentTime = new Date().toISOString().slice(0, 19).replace("T", " ");
@@ -54,6 +52,9 @@ const MemExplore = () => {
     if (apiEndpoint) {
       fetch(apiEndpoint, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           data: {
             time: currentTime,
@@ -68,6 +69,11 @@ const MemExplore = () => {
           } else {
             // ERROR
           }
+          return res.json(); // Parse the response as JSON
+        })
+        .then((data) => {
+          // Handle the JSON response data
+          console.log(data);
         })
         .catch((error) => {
           console.error(error);
@@ -93,17 +99,6 @@ const MemExplore = () => {
 
     fetchEvents();
   }, []);
-
-  const handleChange = (e, eventId) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [eventId]: {
-        ...prevFormData[eventId],
-        [name]: value,
-      },
-    }));
-  };
 
   return (
     <div style={{ height: "100%", overflowY: "auto" }}>
@@ -131,53 +126,53 @@ const MemExplore = () => {
             </p>
             <div className="mt-4 text-right">
               <div>
-                {isFormVisible ? (
-                  <form onSubmit={handleSubmit}>
-                    <div>
-                      <label htmlFor="time">Time:</label>
-                      <input
-                        type="text"
-                        id="time"
-                        name="time"
-                        value={formData.time}
-                        onChange={(e) =>
-                          setFormData({ ...formData, time: e.target.value })
-                        }
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="username">Username:</label>
-                      <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        value={formData.username}
-                        onChange={(e) =>
-                          setFormData({ ...formData, username: e.target.value })
-                        }
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email">Email:</label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                      />
-                    </div>
-                    <div></div>
-                  </form>
-                ) : null}
-                <button
-                  type="submit"
-                  className="bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300 hover:bg-gradient-to-r hover:from-[#b8a8c4] hover:to-[#d96a94] transform hover:scale-105"
-                >
-                  Register
-                </button>
+                <form onSubmit={handleSubmit} className="">
+                  <div>
+                    <label htmlFor="time" className="sr-only"></label>
+                    <input
+                      type="text"
+                      id="time"
+                      name="time"
+                      value={formData.time}
+                      onChange={(e) =>
+                        setFormData({ ...formData, time: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="username" className="sr-only"></label>
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      value={formData.username}
+                      onChange={(e) =>
+                        setFormData({ ...formData, username: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="sr-only"></label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <button
+                      onClick={handleSubmit}
+                      type="submit"
+                      className="bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300 hover:bg-gradient-to-r hover:from-[#b8a8c4] hover:to-[#d96a94] transform hover:scale-105"
+                    >
+                      Register
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>

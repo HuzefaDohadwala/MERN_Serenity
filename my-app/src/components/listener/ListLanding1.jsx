@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import ChatRoom from "../ChatRoom";
 import ListExplore from "./ListExplore";
+
 import ListMemes from "./ListMemes";
 import ListProfile from "./ListProfile";
 import communication from "./Communication.png";
@@ -126,6 +127,12 @@ const ListLanding1 = () => {
 
   const handleRoomSelect = (room) => {
     setSelectedRoom(room);
+    setShowChatRoom(true);
+    setShowExplore(false);
+    setShowMemes(false);
+    setShowProfile(false);
+    console.log("RoomUpdated!!");
+    console.log(room);
   };
 
   return (
@@ -188,9 +195,10 @@ const ListLanding1 = () => {
         </div>
 
         <div className="w-9/12 bg-gray-100 p-4">
-          {showChatRoom && data.roomName && (
-            <ChatRoom roomName={data.roomName} />
-          )}
+          {showChatRoom &&
+            selectedRoom && ( // Updated condition
+              <ChatRoom roomName={selectedRoom.roomName} /> // Pass the correct prop
+            )}
           {showMemes && <ListMemes />}
           {showExplore && <ListExplore />}
           {showProfile && <ListProfile />}

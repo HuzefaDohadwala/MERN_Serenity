@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
+import Ocr from "../member/pages/Ocr";
 
 const ListenerSignup = () => {
   const [error, setError] = useState(null);
@@ -19,7 +20,6 @@ const ListenerSignup = () => {
     }));
   };
 
-  
   // post details on /listener/signup route
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -86,6 +86,8 @@ const ListenerSignup = () => {
             placeholder="Password"
             className="w-full p-4 m-2 border rounded-md border-gray-300 focus:ring focus:border-purple-300 focus:outline-none transition-transform transform-gpu hover:scale-105 hover:translate-y-1"
           />
+
+          <Ocr />
 
           <button
             type="submit"

@@ -1,8 +1,10 @@
 import React from "react";
 import therapistsList from "./TherapistsList.json";
 import "./MemTherapists.css";
+import { useState } from "react";
 
 const MemTherapists = () => {
+  const [isBooking, setIsBooking] = useState(false);
   return (
     <div style={{ height: "100%", overflowY: "auto" }}>
       {therapistsList.map((therapist) => (
@@ -11,7 +13,9 @@ const MemTherapists = () => {
           key={therapist.id}
         >
           <div className="TherapistCard">
-            <h1 className="text-2xl font-bold mb-2 text-white pb-2">{therapist.name}</h1>
+            <h1 className="text-2xl font-bold mb-2 text-white pb-2">
+              {therapist.name}
+            </h1>
             <div className="card_Top flex">
               <div className="card_topLeft">
                 <img
@@ -40,8 +44,10 @@ const MemTherapists = () => {
             <div className="desc_tm text-white pt-4 font-semibold">
               <p>{therapist.description}</p>
             </div>
-            <div className="mt-4 text-right" >
-            <button className=" bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300 hover:bg-gradient-to-r hover:from-[#b8a8c4] hover:to-[#d96a94] transform hover:scale-105">Book Session</button>
+            <div className="mt-4 text-right">
+              <button className=" bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300 hover:bg-gradient-to-r hover:from-[#b8a8c4] hover:to-[#d96a94] transform hover:scale-105">
+                Book Session
+              </button>
             </div>
           </div>
         </div>
