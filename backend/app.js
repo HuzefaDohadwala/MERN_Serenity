@@ -404,7 +404,7 @@ io.on("connection", (socket) => {
 
 mongoose
   .connect(
-    "mongodb+srv://ahkj:Y9Qj01QHl753QEPk@miniproject.kktnwsl.mongodb.net/BetterHelp?retryWrites=true&w=majority"
+    "mongodb://127.0.0.1:27017/betterhelp",
   )
   .then(() => {
     server.listen(5000);

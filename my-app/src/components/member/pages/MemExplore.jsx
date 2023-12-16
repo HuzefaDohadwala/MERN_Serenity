@@ -30,9 +30,9 @@ const MemExplore = () => {
   const getApiEndpoint = (event) => {
     if (event) {
       if (event.company === "MindfulWellness") {
-        return "https://api.apispreadsheets.com/data/DPASwoFmLyBXwDUW/";
+        return "Enter spreadsheet API here";
       } else if (event.company === "SereneMinds, Inc.") {
-        return "https://api.apispreadsheets.com/data/3K3kl7bqF8j1WHWN/";
+        return "Enter spreadsheet API here";
       }
       // Add more conditions for other events
     }

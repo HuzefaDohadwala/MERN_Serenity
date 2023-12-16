@@ -95,7 +95,7 @@ const Ocr = () => {
         />
         <button
           onClick={() => processImage(currentIndex)}
-          className="bg-blue-500bg-gradient-to-r from-[#d96a94] to-[#b8a8c4] text-white hover-bg-blue-600 py-2 px-4 rounded-md mb-4"
+          className="bg-black text-white hover-bg-blue-600 py-2 px-4 rounded-md mb-4"
         >
           Verify Document
         </button>
